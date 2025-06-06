@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Link } from "wouter";
 
 export default function Pricing() {
   const scrollToSection = (sectionId: string) => {
@@ -127,13 +128,14 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                REDESIGN NOW
-              </Button>
+              <Link href="/checkout?service=redesign">
+                <Button
+                  variant="outline"
+                  className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
+                >
+                  REDESIGN NOW
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -168,13 +170,14 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                BUILD NEW SITE
-              </Button>
+              <Link href="/checkout?service=new_website">
+                <Button
+                  variant="outline"
+                  className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
+                >
+                  BUILD NEW SITE
+                </Button>
+              </Link>
             </CardContent>
           </Card>
 
@@ -208,13 +211,14 @@ export default function Pricing() {
                 </div>
               </div>
 
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                START HOSTING
-              </Button>
+              <Link href="/contact">
+                <Button
+                  variant="outline"
+                  className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
+                >
+                  START HOSTING
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
