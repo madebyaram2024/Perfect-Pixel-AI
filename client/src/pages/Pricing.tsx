@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check } from "lucide-react";
+import ChatbotMascot from "@/components/ChatbotMascot";
 
 export default function Pricing() {
   const scrollToContact = () => {
@@ -234,6 +235,8 @@ export default function Pricing() {
           </div>
         </section>
       </main>
+      
+      <ChatbotMascot />
     </div>
   );
 }

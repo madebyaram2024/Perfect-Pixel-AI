@@ -4,6 +4,7 @@ import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
+import ChatbotMascot from "@/components/ChatbotMascot";
 
 export default function Landing() {
   return (
@@ -24,6 +25,8 @@ export default function Landing() {
       <section id="contact">
         <Contact />
       </section>
+      
+      <ChatbotMascot />
     </>
   );
 }
