@@ -3,8 +3,11 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import ChatbotMascot from "@/components/ChatbotMascot";
+import { useLocation } from "wouter";
 
 export default function Pricing() {
+  const [, setLocation] = useLocation();
+  
   const scrollToContact = () => {
     window.location.href = '/contact';
   };
