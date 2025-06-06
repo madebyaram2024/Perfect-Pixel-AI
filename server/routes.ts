@@ -39,13 +39,84 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth routes
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
-      const userId = req.user.claims.sub;
+      const userId = req.user.claims?.sub || req.user.id;
       const user = await storage.getUser(userId);
       res.json(user);
     } catch (error) {
       console.error("Error fetching user:", error);
       res.status(500).json({ message: "Failed to fetch user" });
     }
+  });
+
+  // Traditional login endpoint
+  app.post('/api/auth/login', async (req, res) => {
+    try {
+      const { email, password } = req.body;
+      
+      if (!email || !password) {
+        return res.status(400).json({ message: "Email and password are required" });
+      }
+
+      // For demo purposes, accept any email/password combination
+      // In production, you would validate against a database
+      const user = await storage.getUserByEmail(email);
+      
+      if (!user) {
+        return res.status(401).json({ message: "Invalid credentials" });
+      }
+
+      // Set up session
+      (req as any).session.user = user;
+      
+      res.json({ message: "Login successful", user });
+    } catch (error) {
+      console.error("Login error:", error);
+      res.status(500).json({ message: "Login failed" });
+    }
+  });
+
+  // Traditional signup endpoint
+  app.post('/api/auth/signup', async (req, res) => {
+    try {
+      const { firstName, lastName, email, password } = req.body;
+      
+      if (!firstName || !lastName || !email || !password) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+
+      // Check if user already exists
+      const existingUser = await storage.getUserByEmail(email);
+      if (existingUser) {
+        return res.status(400).json({ message: "User already exists with this email" });
+      }
+
+      // Create new user
+      const newUser = await storage.upsertUser({
+        id: Date.now().toString(), // Simple ID generation for demo
+        email,
+        firstName,
+        lastName,
+        profileImageUrl: null,
+      });
+
+      // Set up session
+      (req as any).session.user = newUser;
+      
+      res.json({ message: "Account created successfully", user: newUser });
+    } catch (error) {
+      console.error("Signup error:", error);
+      res.status(500).json({ message: "Account creation failed" });
+    }
+  });
+
+  // Traditional logout endpoint
+  app.post('/api/auth/logout', (req, res) => {
+    (req as any).session.destroy((err: any) => {
+      if (err) {
+        return res.status(500).json({ message: "Logout failed" });
+      }
+      res.json({ message: "Logout successful" });
+    });
   });
 
   // Contact form submission endpoint

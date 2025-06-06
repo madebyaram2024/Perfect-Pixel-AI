@@ -17,6 +17,7 @@ import Pricing from "@/pages/Pricing";
 import Contact from "@/pages/Contact";
 import Admin from "@/pages/Admin";
 import Checkout from "@/pages/Checkout";
+import Login from "@/pages/Login";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -24,6 +25,7 @@ function Router() {
 
   return (
     <Switch>
+      <Route path="/login" component={Login} />
       <Route path="/" component={isLoading || !isAuthenticated ? Landing : Home} />
       <Route path="/portfolio" component={Portfolio} />
       <Route path="/blog" component={Blog} />

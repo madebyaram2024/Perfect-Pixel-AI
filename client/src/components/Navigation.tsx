@@ -79,13 +79,14 @@ export default function Navigation() {
                 </Button>
               </>
             ) : (
-              <Button
-                variant="ghost"
-                onClick={() => window.location.href = '/api/login'}
-                className="text-sm font-mono uppercase tracking-wider"
-              >
-                Login
-              </Button>
+              <Link href="/login">
+                <Button
+                  variant="ghost"
+                  className="text-sm font-mono uppercase tracking-wider"
+                >
+                  Login
+                </Button>
+              </Link>
             )}
           </div>
 
