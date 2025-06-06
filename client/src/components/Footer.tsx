@@ -7,24 +7,26 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-slate-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold text-primary mb-4">PerfectPixelAI</h3>
-            <p className="text-gray-300 mb-4">
-              Making professional web design accessible and affordable for every business through the power of AI technology.
+    <footer className="bg-background border-t border-border py-16">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+          <div className="md:col-span-6">
+            <h3 className="text-lg font-mono tracking-wider text-foreground mb-6">PERFECTPIXELAI</h3>
+            <p className="text-muted-foreground font-light leading-relaxed max-w-md">
+              Professional AI-powered web design for modern businesses. 
+              Affordable, fast, and tailored to your needs.
             </p>
-            <p className="text-gray-400 text-sm">© 2024 PerfectPixelAI. All rights reserved.</p>
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-2 text-gray-300">
+          <div className="md:col-span-3">
+            <h4 className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-6">
+              SERVICES
+            </h4>
+            <ul className="space-y-4">
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="hover:text-white transition-colors"
+                  className="text-foreground font-light hover:text-accent transition-colors minimal-hover"
                 >
                   New Websites
                 </button>
@@ -32,53 +34,39 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("services")}
-                  className="hover:text-white transition-colors"
+                  className="text-foreground font-light hover:text-accent transition-colors minimal-hover"
                 >
-                  Website Modernization
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => scrollToSection("services")}
-                  className="hover:text-white transition-colors"
-                >
-                  Add-On Features
+                  Modernization
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => scrollToSection("pricing")}
-                  className="hover:text-white transition-colors"
+                  className="text-foreground font-light hover:text-accent transition-colors minimal-hover"
                 >
-                  Hosting Plans
+                  Pricing
                 </button>
               </li>
             </ul>
           </div>
 
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-2 text-gray-300">
+          <div className="md:col-span-3">
+            <h4 className="text-sm font-mono uppercase tracking-wider text-muted-foreground mb-6">
+              COMPANY
+            </h4>
+            <ul className="space-y-4">
               <li>
                 <button
                   onClick={() => scrollToSection("portfolio")}
-                  className="hover:text-white transition-colors"
+                  className="text-foreground font-light hover:text-accent transition-colors minimal-hover"
                 >
                   Portfolio
                 </button>
               </li>
               <li>
                 <button
-                  onClick={() => scrollToSection("pricing")}
-                  className="hover:text-white transition-colors"
-                >
-                  Pricing
-                </button>
-              </li>
-              <li>
-                <button
                   onClick={() => scrollToSection("contact")}
-                  className="hover:text-white transition-colors"
+                  className="text-foreground font-light hover:text-accent transition-colors minimal-hover"
                 >
                   Contact
                 </button>
@@ -86,12 +74,29 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("contact")}
-                  className="hover:text-white transition-colors"
+                  className="text-foreground font-light hover:text-accent transition-colors minimal-hover"
                 >
                   Support
                 </button>
               </li>
             </ul>
+          </div>
+        </div>
+
+        <div className="border-gradient w-full mb-8"></div>
+
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground font-mono">
+            © 2024 PERFECTPIXELAI. ALL RIGHTS RESERVED.
+          </p>
+          
+          <div className="flex items-center gap-6">
+            <button
+              onClick={() => scrollToSection("home")}
+              className="text-xs font-mono uppercase tracking-wider text-muted-foreground hover:text-foreground transition-colors minimal-hover"
+            >
+              BACK TO TOP
+            </button>
           </div>
         </div>
       </div>

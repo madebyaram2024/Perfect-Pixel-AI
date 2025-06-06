@@ -86,26 +86,29 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Get in Touch with PerfectPixelAI
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Ready to launch or modernize your website? We're here to help.
-            Fill out the form below, and we'll respond quickly.
+    <section id="contact" className="py-32 bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-24">
+          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-mono mb-8">
+            CONTACT
           </p>
+          <h2 className="text-4xl md:text-5xl font-light leading-tight text-foreground mb-8">
+            Ready to start
+            <br />
+            <span className="text-gradient">your project?</span>
+          </h2>
+          <div className="border-gradient mx-auto w-24"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Contact Form */}
-          <Card className="bg-muted/50">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-foreground mb-6">Contact Form</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Label htmlFor="name">Name</Label>
+          <div className="lg:col-span-8">
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <Label htmlFor="name" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                    Name
+                  </Label>
                   <Input
                     id="name"
                     name="name"
@@ -113,12 +116,15 @@ export default function Contact() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Your full name"
+                    className="bg-card border-border text-foreground p-4 font-light"
+                    placeholder="Your name"
                   />
                 </div>
 
-                <div>
-                  <Label htmlFor="email">Email</Label>
+                <div className="space-y-2">
+                  <Label htmlFor="email" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                    Email
+                  </Label>
                   <Input
                     id="email"
                     name="email"
@@ -126,92 +132,96 @@ export default function Contact() {
                     required
                     value={formData.email}
                     onChange={handleChange}
+                    className="bg-card border-border text-foreground p-4 font-light"
                     placeholder="your@email.com"
                   />
                 </div>
+              </div>
 
-                <div>
-                  <Label htmlFor="phone">Phone (optional)</Label>
-                  <Input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="(123) 456-7890"
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                  Phone (Optional)
+                </Label>
+                <Input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="bg-card border-border text-foreground p-4 font-light"
+                  placeholder="(123) 456-7890"
+                />
+              </div>
 
-                <div>
-                  <Label htmlFor="message">Message</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell us about your project..."
-                  />
-                </div>
+              <div className="space-y-2">
+                <Label htmlFor="message" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                  Project Details
+                </Label>
+                <Textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={6}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="bg-card border-border text-foreground p-4 font-light resize-none"
+                  placeholder="Tell us about your project requirements..."
+                />
+              </div>
 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full"
-                  disabled={contactMutation.isPending}
-                >
-                  {contactMutation.isPending ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+              <Button
+                type="submit"
+                variant="outline"
+                className="border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 px-8 minimal-hover"
+                disabled={contactMutation.isPending}
+              >
+                {contactMutation.isPending ? "SENDING..." : "SEND MESSAGE"}
+              </Button>
+            </form>
+          </div>
 
-          {/* Contact Details & FAQ */}
-          <div>
+          {/* Contact Info & FAQ */}
+          <div className="lg:col-span-4 space-y-12">
             {/* Contact Details */}
-            <Card className="mb-12 bg-primary text-primary-foreground">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold mb-6">Contact Details</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center">
-                    <Mail className="w-6 h-6 mr-4" />
-                    <div>
-                      <p className="font-medium">Email</p>
-                      <p className="text-blue-100">info@perfectpixelai.com</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center">
-                    <Phone className="w-6 h-6 mr-4" />
-                    <div>
-                      <p className="font-medium">Phone</p>
-                      <p className="text-blue-100">(123) 456-7890</p>
-                    </div>
-                  </div>
+            <div className="space-y-8">
+              <h3 className="text-lg font-light text-foreground">Get in Touch</h3>
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                    EMAIL
+                  </p>
+                  <p className="text-foreground font-light">info@perfectpixelai.com</p>
                 </div>
-              </CardContent>
-            </Card>
+
+                <div className="space-y-2">
+                  <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                    PHONE
+                  </p>
+                  <p className="text-foreground font-light">(123) 456-7890</p>
+                </div>
+
+                <div className="space-y-2">
+                  <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                    RESPONSE TIME
+                  </p>
+                  <p className="text-foreground font-light">Within 24 hours</p>
+                </div>
+              </div>
+            </div>
 
             {/* FAQ */}
-            <Card className="bg-muted/50">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-bold text-foreground mb-6">Have Questions?</h3>
-                <div className="space-y-6">
-                  {faqs.map((faq, index) => (
-                    <div key={index}>
-                      <h4 className="font-semibold text-foreground mb-2">{faq.question}</h4>
-                      <p className="text-muted-foreground">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="mt-12 text-center">
-              <p className="text-xl font-semibold text-primary">
-                Let's create something amazing together!
-              </p>
+            <div className="space-y-8">
+              <h3 className="text-lg font-light text-foreground">Frequently Asked</h3>
+              <div className="space-y-6">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="space-y-2">
+                    <h4 className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+                      {faq.question}
+                    </h4>
+                    <p className="text-foreground font-light">{faq.answer}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
