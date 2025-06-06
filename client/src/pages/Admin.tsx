@@ -44,6 +44,15 @@ interface Order {
   createdAt: string;
 }
 
+interface Contact {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string;
+  message: string;
+  createdAt: string;
+}
+
 export default function Admin() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -118,6 +127,11 @@ export default function Admin() {
     queryKey: ["/api/admin/orders"],
   });
 
+  // Contacts
+  const { data: contacts = [] } = useQuery<Contact[]>({
+    queryKey: ["/api/contacts"],
+  });
+
   // Image Upload
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
@@ -180,9 +194,10 @@ export default function Admin() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-3">
+          <TabsList className="grid w-full grid-cols-4">
             <TabsTrigger value="blog">Blog Posts</TabsTrigger>
             <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
+            <TabsTrigger value="contacts">Contacts</TabsTrigger>
             <TabsTrigger value="orders">Orders</TabsTrigger>
           </TabsList>
 
@@ -452,6 +467,53 @@ export default function Admin() {
                   </CardContent>
                 </Card>
               ))}
+            </div>
+          </TabsContent>
+
+          <TabsContent value="contacts" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Contact Form Submissions</CardTitle>
+                <p className="text-sm text-muted-foreground">
+                  Messages sent to hello@perfectpixelai.com
+                </p>
+              </CardHeader>
+            </Card>
+
+            <div className="grid gap-4">
+              {contacts.map((contact) => (
+                <Card key={contact.id}>
+                  <CardContent className="p-6">
+                    <div className="space-y-4">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <h3 className="font-semibold text-foreground">{contact.name}</h3>
+                          <p className="text-sm text-muted-foreground">{contact.email}</p>
+                          {contact.phone && (
+                            <p className="text-sm text-muted-foreground">{contact.phone}</p>
+                          )}
+                        </div>
+                        <div className="text-right">
+                          <p className="text-xs text-muted-foreground">
+                            {new Date(contact.createdAt).toLocaleDateString()} at{' '}
+                            {new Date(contact.createdAt).toLocaleTimeString()}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="border-l-2 border-accent/50 pl-4">
+                        <p className="text-sm text-foreground whitespace-pre-wrap">{contact.message}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+              {contacts.length === 0 && (
+                <Card>
+                  <CardContent className="p-8 text-center">
+                    <p className="text-muted-foreground">No contact submissions yet.</p>
+                  </CardContent>
+                </Card>
+              )}
             </div>
           </TabsContent>
         </Tabs>

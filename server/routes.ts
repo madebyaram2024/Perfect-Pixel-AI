@@ -124,7 +124,33 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const contactData = insertContactSchema.parse(req.body);
       const contact = await storage.createContact(contactData);
-      res.json({ success: true, contact });
+      
+      // Send email notification to hello@perfectpixelai.com
+      const emailSubject = `New Contact Form Submission from ${contactData.name}`;
+      const emailBody = `
+        New contact form submission:
+        
+        Name: ${contactData.name}
+        Email: ${contactData.email}
+        Phone: ${contactData.phone || 'Not provided'}
+        
+        Message:
+        ${contactData.message}
+        
+        Submitted at: ${new Date().toLocaleString()}
+      `;
+      
+      // In a production environment, you would integrate with an email service
+      // For now, we'll log the email content and store it in the database
+      console.log('Email would be sent to hello@perfectpixelai.com:');
+      console.log('Subject:', emailSubject);
+      console.log('Body:', emailBody);
+      
+      res.json({ 
+        success: true, 
+        contact,
+        message: "Thank you for your message! We'll get back to you within 24 hours."
+      });
     } catch (error) {
       if (error instanceof z.ZodError) {
         res.status(400).json({ 
@@ -133,9 +159,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
           errors: error.errors 
         });
       } else {
+        console.error("Contact form error:", error);
         res.status(500).json({ 
           success: false, 
-          message: "Internal server error" 
+          message: "Sorry, there was an error sending your message. Please try again." 
         });
       }
     }
