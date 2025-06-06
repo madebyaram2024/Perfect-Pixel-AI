@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Check, Star } from "lucide-react";
+import { Link } from "wouter";
 
 export default function Hero() {
   const scrollToSection = (sectionId: string) => {
@@ -85,22 +86,24 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="animate-fade-in-up delay-1000">
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Button
-              size="lg"
-              onClick={() => scrollToSection("services")}
-              className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-accent-foreground px-10 py-5 text-lg group shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:scale-105"
-            >
-              Get Started Now
-              <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => scrollToSection("portfolio")}
-              className="border-2 border-foreground/20 text-foreground hover:bg-foreground hover:text-background px-10 py-5 text-lg backdrop-blur-sm bg-card/10 hover:border-accent transition-all duration-300 transform hover:scale-105"
-            >
-              View Our Work
-            </Button>
+            <Link href="/pricing">
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-accent-foreground px-10 py-5 text-lg group shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:scale-105"
+              >
+                Get Started Now
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
+              </Button>
+            </Link>
+            <Link href="/portfolio">
+              <Button
+                variant="outline"
+                size="lg"
+                className="border-2 border-foreground/20 text-foreground hover:bg-foreground hover:text-background px-10 py-5 text-lg backdrop-blur-sm bg-card/10 hover:border-accent transition-all duration-300 transform hover:scale-105"
+              >
+                View Our Work
+              </Button>
+            </Link>
           </div>
         </div>
 
