@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 11% 98%; /* #F8FAFC */
+  --foreground: 215 25% 27%; /* #334155 */
+  --muted: 210 14% 95%; /* #F1F5F9 */
+  --muted-foreground: 215 16% 47%; /* #64748B */
+  --popover: 0 0% 100%; /* #FFFFFF */
+  --popover-foreground: 215 25% 27%; /* #334155 */
+  --card: 0 0% 100%; /* #FFFFFF */
+  --card-foreground: 215 25% 27%; /* #334155 */
+  --border: 214 13% 91%; /* #E2E8F0 */
+  --input: 214 13% 91%; /* #E2E8F0 */
+  --primary: 217 91% 60%; /* #3B82F6 */
+  --primary-foreground: 210 40% 98%; /* #F8FAFC */
+  --secondary: 210 40% 94%; /* #F1F5F9 */
+  --secondary-foreground: 215 25% 27%; /* #334155 */
+  --accent: 45 93% 47%; /* #F59E0B */
+  --accent-foreground: 210 40% 98%; /* #F8FAFC */
+  --destructive: 0 84% 60%; /* #EF4444 */
+  --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+  --ring: 217 91% 60%; /* #3B82F6 */
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 215 28% 17%; /* #1E293B */
+  --foreground: 210 40% 98%; /* #F8FAFC */
+  --muted: 215 28% 17%; /* #1E293B */
+  --muted-foreground: 215 20% 65%; /* #94A3B8 */
+  --popover: 215 28% 17%; /* #1E293B */
+  --popover-foreground: 210 40% 98%; /* #F8FAFC */
+  --card: 215 28% 17%; /* #1E293B */
+  --card-foreground: 210 40% 98%; /* #F8FAFC */
+  --border: 215 28% 17%; /* #1E293B */
+  --input: 215 28% 17%; /* #1E293B */
+  --primary: 217 91% 60%; /* #3B82F6 */
+  --primary-foreground: 210 40% 98%; /* #F8FAFC */
+  --secondary: 215 28% 17%; /* #1E293B */
+  --secondary-foreground: 210 40% 98%; /* #F8FAFC */
+  --accent: 45 93% 47%; /* #F59E0B */
+  --accent-foreground: 210 40% 98%; /* #F8FAFC */
+  --destructive: 0 62% 30%; /* #7F1D1D */
+  --destructive-foreground: 210 40% 98%; /* #F8FAFC */
+  --ring: 217 91% 60%; /* #3B82F6 */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .hero-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+  
+  .service-card:hover {
+    transform: translateY(-4px);
+    transition: all 0.3s ease;
+  }
+  
+  .portfolio-item:hover img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+}
