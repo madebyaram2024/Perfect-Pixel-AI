@@ -101,17 +101,53 @@ export default function Pricing() {
 
         {/* Main Service Cards - 3 Options */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {/* New Website */}
-          <div className="bg-card border border-border p-8 minimal-hover relative">
+          {/* Website Redesign */}
+          <Card className="bg-card border-border transition-all duration-300 hover:shadow-lg">
+            <CardContent className="p-8 text-center space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Redesign</h3>
+                <div className="text-4xl font-light text-foreground">$199</div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                  REFRESH EXISTING
+                </p>
+              </div>
+
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-4 text-left">
+                {modernizationFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
+                ))}
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">Performance optimization</p>
+                </div>
+              </div>
+
+              <Button
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
+                onClick={() => scrollToSection("contact")}
+              >
+                REDESIGN NOW
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* New Website - Most Popular */}
+          <Card className="bg-card border-accent transition-all duration-300 hover:shadow-lg relative">
             <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
               <span className="bg-accent text-accent-foreground px-3 py-1 text-xs font-mono uppercase tracking-wider">
                 MOST POPULAR
               </span>
             </div>
-            <div className="text-center space-y-6">
+            <CardContent className="p-8 text-center space-y-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-light text-foreground">New Website</h3>
-                <div className="text-4xl font-light text-foreground">$999</div>
+                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">New Website</h3>
+                <div className="text-4xl font-light text-foreground">$199</div>
                 <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
                   COMPLETE BUILD
                 </p>
@@ -139,14 +175,14 @@ export default function Pricing() {
               >
                 BUILD NEW SITE
               </Button>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
 
-          {/* Hosting Service */}
-          <div className="bg-card border border-border p-8 minimal-hover">
-            <div className="text-center space-y-6">
+          {/* Website Hosting */}
+          <Card className="bg-card border-border transition-all duration-300 hover:shadow-lg">
+            <CardContent className="p-8 text-center space-y-6">
               <div className="space-y-4">
-                <h3 className="text-xl font-light text-foreground">Website Hosting</h3>
+                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Hosting</h3>
                 <div className="text-4xl font-light text-foreground">$29<span className="text-lg">/mo</span></div>
                 <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
                   MANAGED HOSTING
@@ -179,44 +215,8 @@ export default function Pricing() {
               >
                 START HOSTING
               </Button>
-            </div>
-          </div>
-
-          {/* Website Redesign */}
-          <div className="bg-card border border-border p-8 minimal-hover">
-            <div className="text-center space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-light text-foreground">Website Redesign</h3>
-                <div className="text-4xl font-light text-foreground">$699</div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
-                  REFRESH EXISTING
-                </p>
-              </div>
-
-              <div className="border-gradient w-full"></div>
-
-              <div className="space-y-4 text-left">
-                {modernizationFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground font-light">{feature}</p>
-                  </div>
-                ))}
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">Performance optimization</p>
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                REDESIGN NOW
-              </Button>
-            </div>
-          </div>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Add-On Features */}
