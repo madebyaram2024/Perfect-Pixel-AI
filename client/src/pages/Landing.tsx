@@ -1,8 +1,8 @@
 import Hero from "@/components/Hero";
+import ExpertiseSection from "@/components/ExpertiseSection";
 import Features from "@/components/Features";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
-import Pricing from "@/components/Pricing";
 import Contact from "@/components/Contact";
 import ChatbotMascot from "@/components/ChatbotMascot";
 
@@ -12,11 +12,14 @@ export default function Landing() {
       <section id="home">
         <Hero />
       </section>
-      <section id="features">
-        <Features />
+      <section id="expertise">
+        <ExpertiseSection />
       </section>
       <section id="services">
         <Services />
+      </section>
+      <section id="features">
+        <Features />
       </section>
       <section id="portfolio">
         <Portfolio />
