@@ -9,13 +9,23 @@ export default function Navigation() {
   const [location] = useLocation();
   const { user, isAuthenticated } = useAuth();
 
-  const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/blog", label: "Blog" },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/contact", label: "Contact" },
-  ];
+  const getNavItems = () => {
+    const baseItems = [
+      { href: "/", label: "Home" },
+      { href: "/portfolio", label: "Portfolio" },
+      { href: "/blog", label: "Blog" },
+      { href: "/pricing", label: "Pricing" },
+    ];
+    
+    // Only show Contact for non-authenticated users
+    if (!isAuthenticated) {
+      baseItems.push({ href: "/contact", label: "Contact" });
+    }
+    
+    return baseItems;
+  };
+
+  const navItems = getNavItems();
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-border">
