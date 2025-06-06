@@ -3,8 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Server, Globe, Wrench } from "lucide-react";
 import { Link } from "wouter";
+import Navigation from "@/components/Navigation";
 
 interface ServicePlan {
   id: string;
