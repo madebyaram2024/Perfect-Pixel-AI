@@ -43,72 +43,72 @@ export default function ChatbotMascot() {
 
   const questions = [
     {
-      text: "Hi there! I'm PixelBot, your AI assistant! 🤖 What brings you here today?",
+      text: "Hi! I'm PixelBot. What type of website project do you have?",
       options: [
         "I need a brand new website",
-        "I want to update my existing site", 
-        "I'm looking for hosting services",
-        "I'm not sure what I need"
+        "I want to redesign my current site", 
+        "I need reliable hosting",
+        "Not sure - help me decide"
       ]
     },
     {
-      text: "Great choice! What's your main goal with this project?",
+      text: "What's the main purpose of your website?",
       options: [
-        "Attract more customers",
-        "Sell products/services online",
-        "Share information or blog",
-        "Portfolio/showcase work"
+        "Get more customers for my business",
+        "Sell products or services online",
+        "Share content and information",
+        "Showcase my work or portfolio"
       ]
     },
     {
-      text: "Perfect! What's your experience level with websites?",
+      text: "What's your budget range?",
       options: [
-        "Complete beginner",
-        "Some experience",
-        "Pretty tech-savvy",
-        "I'm a developer"
+        "Under $200",
+        "$200 - $500",
+        "$500 - $1000",
+        "Budget is flexible"
       ]
     },
     {
-      text: "Almost done! What's your timeline?",
+      text: "When do you need this completed?",
       options: [
-        "ASAP - I needed it yesterday!",
-        "Within 2-4 weeks",
-        "1-2 months is fine",
-        "No rush, when it's ready"
+        "Within 1 week",
+        "Within 2-3 weeks",
+        "Within a month",
+        "No specific deadline"
       ]
     }
   ];
 
   const getRecommendation = (answers: string[]): ServiceRecommendation => {
-    const [purpose, goal, experience, timeline] = answers;
+    const [projectType, purpose, budget, timeline] = answers;
 
     // Logic for Website Redesign ($149)
-    if (purpose.includes("update") || purpose.includes("existing")) {
+    if (projectType.includes("redesign") || projectType.includes("current")) {
       return {
         service: "Website Redesign",
         price: "$149",
-        reason: "Since you have an existing site, a redesign will give you the best value while keeping what works!",
+        reason: "Perfect for updating your existing site with modern design and better performance!",
         features: [
           "Redesign of up to 5 pages",
-          "Mobile-friendly enhancements", 
-          "Performance optimization",
-          "AI-powered improvements"
+          "Mobile-responsive updates", 
+          "Speed optimization",
+          "SEO improvements"
         ]
       };
     }
 
     // Logic for Website Hosting ($24.99/mo)
-    if (purpose.includes("hosting") || (goal.includes("information") && experience.includes("developer"))) {
+    if (projectType.includes("hosting") || projectType.includes("reliable hosting")) {
       return {
         service: "Website Hosting",
         price: "$24.99/mo",
-        reason: "You need reliable hosting to keep your site running smoothly and secure!",
+        reason: "Reliable hosting will keep your website fast, secure, and always available!",
         features: [
           "99.9% uptime guarantee",
           "SSL certificate included",
-          "Regular backups",
-          "Technical support"
+          "Daily automated backups",
+          "24/7 technical support"
         ]
       };
     }

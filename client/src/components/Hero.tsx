@@ -21,7 +21,7 @@ export default function Hero() {
         <div className="flex justify-center mb-8">
           <Badge className="bg-accent/20 text-accent border-accent/30 px-4 py-2">
             <Star className="w-4 h-4 mr-2 fill-current" />
-            500+ Websites Built
+            Go Live In 7 Days
           </Badge>
         </div>
 
@@ -50,7 +50,7 @@ export default function Hero() {
           </div>
           <div className="flex items-center gap-2">
             <Check className="w-5 h-5 text-accent" />
-            <span>2-Week Delivery</span>
+            <span>7-Day Delivery</span>
           </div>
           <div className="flex items-center gap-2">
             <Check className="w-5 h-5 text-accent" />
@@ -90,27 +90,9 @@ export default function Hero() {
 
         {/* Social Proof */}
         <div className="text-center">
-          <p className="text-sm text-muted-foreground mb-4">
-            Trusted by businesses across the globe
+          <p className="text-sm text-muted-foreground">
+            Professional websites that actually work for your business
           </p>
-          <div className="flex justify-center items-center gap-8 text-muted-foreground">
-            <div className="text-center">
-              <div className="text-2xl font-light text-foreground">500+</div>
-              <div className="text-xs uppercase tracking-wider">Websites</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-light text-foreground">98%</div>
-              <div className="text-xs uppercase tracking-wider">Satisfaction</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-light text-foreground">2 Week</div>
-              <div className="text-xs uppercase tracking-wider">Delivery</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-light text-foreground">24/7</div>
-              <div className="text-xs uppercase tracking-wider">Support</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
