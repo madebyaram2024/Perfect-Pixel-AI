@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { useAuth } from "@/hooks/useAuth";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import CursorTrail from "@/components/CursorTrail";
 
 // Pages
 import Landing from "@/pages/Landing";
@@ -44,6 +45,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <div className="min-h-screen bg-background text-foreground">
+          <CursorTrail />
           <Navigation />
           <main className="pt-16">
             <Router />

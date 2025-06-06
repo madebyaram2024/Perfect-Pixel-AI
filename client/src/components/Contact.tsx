@@ -105,9 +105,9 @@ export default function Contact() {
           <div className="lg:col-span-8">
             <form onSubmit={handleSubmit} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <Label htmlFor="name" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
-                    Name
+                <div className="space-y-2 group animate-reveal-up" style={{ animationDelay: '100ms' }}>
+                  <Label htmlFor="name" className="text-sm font-mono uppercase tracking-wider text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                    Name *
                   </Label>
                   <Input
                     id="name"
@@ -116,14 +116,14 @@ export default function Contact() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    className="bg-card border-border text-foreground p-4 font-light"
+                    className="bg-card border-border text-foreground p-4 font-light focus-ring hover:border-accent/50 transition-all duration-300 focus:bg-card/80"
                     placeholder="Your name"
                   />
                 </div>
 
-                <div className="space-y-2">
-                  <Label htmlFor="email" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
-                    Email
+                <div className="space-y-2 group animate-reveal-up" style={{ animationDelay: '200ms' }}>
+                  <Label htmlFor="email" className="text-sm font-mono uppercase tracking-wider text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                    Email *
                   </Label>
                   <Input
                     id="email"
@@ -132,14 +132,14 @@ export default function Contact() {
                     required
                     value={formData.email}
                     onChange={handleChange}
-                    className="bg-card border-border text-foreground p-4 font-light"
+                    className="bg-card border-border text-foreground p-4 font-light focus-ring hover:border-accent/50 transition-all duration-300 focus:bg-card/80"
                     placeholder="your@email.com"
                   />
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
+              <div className="space-y-2 group animate-reveal-up" style={{ animationDelay: '300ms' }}>
+                <Label htmlFor="phone" className="text-sm font-mono uppercase tracking-wider text-muted-foreground group-hover:text-accent transition-colors duration-300">
                   Phone (Optional)
                 </Label>
                 <Input
@@ -148,14 +148,14 @@ export default function Contact() {
                   type="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="bg-card border-border text-foreground p-4 font-light"
+                  className="bg-card border-border text-foreground p-4 font-light focus-ring hover:border-accent/50 transition-all duration-300 focus:bg-card/80"
                   placeholder="(123) 456-7890"
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="message" className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
-                  Project Details
+              <div className="space-y-2 group animate-reveal-up" style={{ animationDelay: '400ms' }}>
+                <Label htmlFor="message" className="text-sm font-mono uppercase tracking-wider text-muted-foreground group-hover:text-accent transition-colors duration-300">
+                  Project Details *
                 </Label>
                 <Textarea
                   id="message"
@@ -164,19 +164,26 @@ export default function Contact() {
                   rows={6}
                   value={formData.message}
                   onChange={handleChange}
-                  className="bg-card border-border text-foreground p-4 font-light resize-none"
+                  className="bg-card border-border text-foreground p-4 font-light resize-none focus-ring hover:border-accent/50 transition-all duration-300 focus:bg-card/80"
                   placeholder="Tell us about your project requirements..."
                 />
               </div>
 
-              <Button
-                type="submit"
-                variant="outline"
-                className="border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 px-8 minimal-hover"
-                disabled={contactMutation.isPending}
-              >
-                {contactMutation.isPending ? "SENDING..." : "SEND MESSAGE"}
-              </Button>
+              <div className="animate-reveal-up" style={{ animationDelay: '500ms' }}>
+                <Button
+                  type="submit"
+                  variant="outline"
+                  className="border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 px-8 btn-magnetic btn-ripple focus-ring relative overflow-hidden group"
+                  disabled={contactMutation.isPending}
+                >
+                  <span className="relative z-10 transition-transform duration-200 group-hover:scale-105">
+                    {contactMutation.isPending ? "SENDING..." : "SEND MESSAGE"}
+                  </span>
+                  {contactMutation.isPending && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 animate-pulse"></div>
+                  )}
+                </Button>
+              </div>
             </form>
           </div>
 
