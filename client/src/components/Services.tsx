@@ -149,7 +149,7 @@ export default function Services() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
               variant="outline"
-              onClick={() => scrollToSection("contact")}
+              onClick={() => window.location.href = "/pricing"}
               className="border-foreground text-foreground hover:bg-foreground hover:text-background px-6 py-3"
             >
               Buy Now
