@@ -20,10 +20,6 @@ export default function Landing() {
       <section id="portfolio">
         <Portfolio />
       </section>
-
-      <section id="contact">
-        <Contact />
-      </section>
       
       <ChatbotMascot />
     </>
