@@ -1,6 +1,5 @@
 import Hero from "@/components/Hero";
-import ExpertiseSection from "@/components/ExpertiseSection";
-import Features from "@/components/Features";
+import ValueProposition from "@/components/ValueProposition";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
 import Contact from "@/components/Contact";
@@ -12,14 +11,11 @@ export default function Landing() {
       <section id="home">
         <Hero />
       </section>
-      <section id="expertise">
-        <ExpertiseSection />
+      <section id="value">
+        <ValueProposition />
       </section>
       <section id="services">
         <Services />
-      </section>
-      <section id="features">
-        <Features />
       </section>
       <section id="portfolio">
         <Portfolio />

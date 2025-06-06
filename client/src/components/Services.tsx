@@ -1,6 +1,7 @@
-import { Plus, RotateCcw, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { ArrowRight, RotateCcw, Plus, Server } from "lucide-react";
 
 export default function Services() {
   const scrollToSection = (sectionId: string) => {
@@ -10,231 +11,155 @@ export default function Services() {
     }
   };
 
-  const newWebsiteFeatures = [
-    "Up to 5 custom pages",
-    "Responsive design for all devices",
-    "Basic SEO optimization",
-    "Standard features (contact forms, galleries)",
-  ];
-
-  const modernizationFeatures = [
-    "Redesign of up to 5 pages",
-    "Content updates",
-    "Mobile-friendly enhancements",
-    "AI-powered improvements",
-  ];
-
-  const processSteps = [
+  const services = [
     {
-      number: 1,
-      title: "Consultation",
-      description: "We discuss your goals and vision.",
+      icon: RotateCcw,
+      title: "Website Redesign",
+      price: "$149",
+      description: "Give your existing website a modern makeover that converts better",
+      features: [
+        "Up to 5 pages redesigned",
+        "Mobile-responsive updates", 
+        "Speed optimization",
+        "Modern design trends",
+        "SEO improvements"
+      ],
+      cta: "Redesign My Website",
+      popular: false
     },
     {
-      number: 2,
-      title: "Design",
-      description: "Our AI generates tailored design options.",
+      icon: Plus,
+      title: "New Website",
+      price: "$199",
+      description: "Complete custom website built from scratch for your business",
+      features: [
+        "Up to 5 custom pages",
+        "Professional copywriting",
+        "Contact forms & features",
+        "SEO foundation setup",
+        "30-day revision period"
+      ],
+      cta: "Build New Website",
+      popular: true
     },
     {
-      number: 3,
-      title: "Feedback",
-      description: "You review and refine with us.",
-    },
-    {
-      number: 4,
-      title: "Launch",
-      description: "Your new site goes live!",
-    },
-  ];
-
-  const hostingFeatures = [
-    "Reliable hosting",
-    "Regular backups",
-    "Security updates",
-    "Technical support",
-  ];
-
-  const addOns = [
-    { name: "eCommerce", price: "$99", description: "Add an online store" },
-    { name: "Blog", price: "$49", description: "Share updates and boost SEO" },
-    { name: "Social Integration", price: "$29", description: "Connect your profiles" },
-    { name: "Custom Features", price: "Quote", description: "Need something unique?" },
+      icon: Server,
+      title: "Website Hosting",
+      price: "$24.99/mo",
+      description: "Reliable hosting with security, backups, and maintenance included",
+      features: [
+        "99.9% uptime guarantee",
+        "SSL security certificate",
+        "Daily automated backups",
+        "Regular security updates",
+        "24/7 technical support"
+      ],
+      cta: "Start Hosting",
+      popular: false
+    }
   ];
 
   return (
-    <section id="services" className="py-32 bg-background border-t border-border">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-24">
-          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-mono mb-8">
-            SERVICES
-          </p>
-          <h2 className="text-4xl md:text-5xl font-light leading-tight text-foreground mb-8">
-            AI-driven web design
-            <br />
-            <span className="text-gradient">for modern businesses</span>
+    <section className="py-24 bg-background">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-light text-foreground mb-6">
+            Choose Your Website Solution
           </h2>
-          <div className="border-gradient mx-auto w-24"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Whether you need a fresh design, a brand new website, or reliable hosting, 
+            we have the perfect solution for your business.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          {/* Website Redesign */}
-          <Card className="bg-card border-border transition-all duration-300 hover:shadow-lg">
-            <CardContent className="p-8 text-center space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Redesign</h3>
-                <div className="text-4xl font-light text-foreground">$149</div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
-                  REFRESH EXISTING
-                </p>
-              </div>
-
-              <div className="border-gradient w-full"></div>
-
-              <div className="space-y-4 text-left">
-                {modernizationFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground font-light">{feature}</p>
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <Card 
+              key={index} 
+              className={`relative border-border hover:shadow-lg transition-all duration-300 ${
+                service.popular ? 'border-accent shadow-lg scale-105' : ''
+              }`}
+            >
+              {service.popular && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-accent text-accent-foreground px-4 py-1">
+                    Most Popular
+                  </Badge>
+                </div>
+              )}
+              
+              <CardContent className="p-8 space-y-6">
+                {/* Service Icon & Title */}
+                <div className="text-center">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <service.icon className="w-8 h-8 text-accent" />
                   </div>
-                ))}
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">Performance optimization</p>
+                  <h3 className="text-xl font-medium text-foreground mb-2">{service.title}</h3>
+                  <div className="text-3xl font-light text-foreground mb-3">{service.price}</div>
+                  <p className="text-muted-foreground text-sm">{service.description}</p>
                 </div>
-              </div>
 
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                REDESIGN NOW
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* New Website - Most Popular */}
-          <Card className="bg-card border-accent transition-all duration-300 hover:shadow-lg relative">
-            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <span className="bg-accent text-accent-foreground px-3 py-1 text-xs font-mono uppercase tracking-wider">
-                MOST POPULAR
-              </span>
-            </div>
-            <CardContent className="p-8 text-center space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">New Website</h3>
-                <div className="text-4xl font-light text-foreground">$199</div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
-                  COMPLETE BUILD
-                </p>
-              </div>
-
-              <div className="border-gradient w-full"></div>
-
-              <div className="space-y-4 text-left">
-                {newWebsiteFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground font-light">{feature}</p>
-                  </div>
-                ))}
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">1 month free hosting</p>
+                {/* Features List */}
+                <div className="space-y-3">
+                  {service.features.map((feature, featureIndex) => (
+                    <div key={featureIndex} className="flex items-start gap-3">
+                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
+                      <span className="text-muted-foreground text-sm">{feature}</span>
+                    </div>
+                  ))}
                 </div>
-              </div>
 
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                BUILD NEW SITE
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Website Hosting */}
-          <Card className="bg-card border-border transition-all duration-300 hover:shadow-lg">
-            <CardContent className="p-8 text-center space-y-6">
-              <div className="space-y-4">
-                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Hosting</h3>
-                <div className="text-4xl font-light text-foreground">$24.99<span className="text-lg">/mo</span></div>
-                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
-                  MANAGED HOSTING
-                </p>
-              </div>
-
-              <div className="border-gradient w-full"></div>
-
-              <div className="space-y-4 text-left">
-                {hostingFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                    <p className="text-muted-foreground font-light">{feature}</p>
-                  </div>
-                ))}
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">99.9% uptime guarantee</p>
+                {/* CTA Button */}
+                <div className="pt-4">
+                  <Button
+                    onClick={() => scrollToSection("contact")}
+                    className={`w-full group ${
+                      service.popular 
+                        ? 'bg-accent text-accent-foreground hover:bg-accent/90' 
+                        : 'bg-secondary text-secondary-foreground hover:bg-secondary/80'
+                    }`}
+                  >
+                    {service.cta}
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                  </Button>
                 </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">SSL certificate included</p>
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                START HOSTING
-              </Button>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        {/* Process Section */}
-        <div className="mb-24">
-          <div className="text-center mb-16">
-            <h3 className="text-2xl font-light text-foreground mb-4">Our Process</h3>
-            <div className="border-gradient mx-auto w-16"></div>
+        {/* Additional Info */}
+        <div className="text-center mt-16 space-y-6">
+          <div className="max-w-3xl mx-auto">
+            <h3 className="text-xl font-medium text-foreground mb-4">
+              Not sure which option is right for you?
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              Our AI-powered chatbot can help recommend the perfect solution based on your specific needs and budget.
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-            {processSteps.map((step, index) => (
-              <div key={index} className="text-center space-y-4">
-                <div className="w-12 h-12 border border-border bg-card flex items-center justify-center mx-auto font-mono text-sm">
-                  {step.number.toString().padStart(2, '0')}
-                </div>
-                <div className="space-y-2">
-                  <h4 className="font-medium text-foreground">{step.title}</h4>
-                  <p className="text-sm text-muted-foreground font-light">{step.description}</p>
-                </div>
-              </div>
-            ))}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              variant="outline"
+              onClick={() => scrollToSection("contact")}
+              className="border-foreground text-foreground hover:bg-foreground hover:text-background px-6 py-3"
+            >
+              Get Free Consultation
+            </Button>
+            <Button
+              onClick={() => {
+                // Trigger chatbot to open with service recommendation flow
+                const chatButton = document.querySelector('[data-chatbot-trigger]') as HTMLElement;
+                if (chatButton) chatButton.click();
+              }}
+              className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3"
+            >
+              Ask Our AI Assistant
+            </Button>
           </div>
-        </div>
-
-        {/* Add-On Features */}
-        <div className="text-center">
-          <h3 className="text-2xl font-light text-foreground mb-4">Add-On Features</h3>
-          <div className="border-gradient mx-auto w-16 mb-12"></div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
-            {addOns.map((addon, index) => (
-              <div key={index} className="text-center space-y-4 p-6 border border-border minimal-hover">
-                <h4 className="font-medium text-foreground">{addon.name}</h4>
-                <div className="text-xl font-light text-foreground">{addon.price}</div>
-                <p className="text-sm text-muted-foreground font-light">{addon.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <p className="text-muted-foreground font-light">
-            With PerfectPixelAI, you own your website files—host with us or anywhere you choose.
-          </p>
         </div>
       </div>
     </section>
