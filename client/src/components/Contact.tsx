@@ -204,7 +204,7 @@ export default function Contact() {
                   <p className="text-sm font-mono uppercase tracking-wider text-muted-foreground">
                     PHONE
                   </p>
-                  <p className="text-foreground font-light">(123) 456-7890</p>
+                  <p className="text-foreground font-light">213.818.3100</p>
                 </div>
 
                 <div className="space-y-2">
