@@ -1,25 +1,53 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "wouter";
+
+interface PortfolioItem {
+  id: number;
+  title: string;
+  description: string;
+  imageUrl: string;
+  testimonial?: string;
+  clientName?: string;
+  liveUrl?: string;
+  featured: boolean;
+  order: number;
+}
 
 export default function Portfolio() {
-  const portfolioItems = [
-    {
-      title: "Sweet Treats Bakery",
-      description: "Modern bakery website with online ordering",
-      image: "https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
-    },
-    {
-      title: "Photography Portfolio",
-      description: "Clean portfolio showcasing professional work",
-      image: "https://images.unsplash.com/photo-1606983340126-99ab4feaa64a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
-    },
-    {
-      title: "Landscaping Service",
-      description: "Mobile-first redesign for local business",
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
-    }
-  ];
+  const { data: portfolioItems = [], isLoading } = useQuery<PortfolioItem[]>({
+    queryKey: ["/api/portfolio/items"],
+  });
+
+  // Filter for featured items only and sort by order
+  const featuredItems = portfolioItems
+    .filter(item => item.featured)
+    .sort((a, b) => a.order - b.order)
+    .slice(0, 3); // Show only top 3 featured items
+
+  if (isLoading) {
+    return (
+      <section className="py-16 bg-card/20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4">
+              Recent Work
+            </h2>
+            <p className="text-muted-foreground">
+              See what we've built for other businesses
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="aspect-[4/3] bg-muted animate-pulse rounded-lg"></div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-card/20">
@@ -36,15 +64,15 @@ export default function Portfolio() {
 
         {/* Enhanced Grid with Micro-interactions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {portfolioItems.map((item, index) => (
+          {featuredItems.map((item, index) => (
             <Card 
-              key={index} 
+              key={item.id} 
               className="group overflow-hidden border-border hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500 hover:scale-105 hover:-translate-y-1 cursor-pointer"
               style={{ animationDelay: `${index * 150}ms` }}
             >
               <div className="aspect-[4/3] bg-muted overflow-hidden relative">
                 <img 
-                  src={item.image} 
+                  src={item.imageUrl} 
                   alt={item.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
@@ -59,6 +87,13 @@ export default function Portfolio() {
               <CardContent className="p-4 group-hover:bg-card/80 transition-colors duration-300">
                 <h3 className="font-medium text-foreground mb-2 group-hover:text-accent transition-colors duration-300">{item.title}</h3>
                 <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item.description}</p>
+                
+                {item.testimonial && item.clientName && (
+                  <div className="mt-3 p-2 bg-muted/30 rounded border-l-2 border-accent/50">
+                    <p className="text-xs text-muted-foreground italic mb-1">"{item.testimonial}"</p>
+                    <p className="text-xs text-muted-foreground font-medium">— {item.clientName}</p>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -66,13 +101,15 @@ export default function Portfolio() {
 
         {/* Simple CTA */}
         <div className="text-center">
-          <Button
-            variant="outline"
-            className="border-foreground text-foreground hover:bg-foreground hover:text-background"
-          >
-            View All Projects
-            <ExternalLink className="w-4 h-4 ml-2" />
-          </Button>
+          <Link href="/portfolio">
+            <Button
+              variant="outline"
+              className="border-foreground text-foreground hover:bg-foreground hover:text-background"
+            >
+              View All Projects
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
