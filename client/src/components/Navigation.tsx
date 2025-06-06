@@ -79,23 +79,13 @@ export default function Navigation() {
                 </Button>
               </>
             ) : (
-              <>
-                <Button
-                  variant="ghost"
-                  onClick={() => window.location.href = '/api/login'}
-                  className="text-sm font-mono uppercase tracking-wider"
-                >
-                  Login
-                </Button>
-                <Link href="/contact">
-                  <Button 
-                    variant="ghost"
-                    className="text-sm font-mono uppercase tracking-wider hover:text-accent minimal-hover"
-                  >
-                    CONTACT
-                  </Button>
-                </Link>
-              </>
+              <Button
+                variant="ghost"
+                onClick={() => window.location.href = '/api/login'}
+                className="text-sm font-mono uppercase tracking-wider"
+              >
+                Login
+              </Button>
             )}
           </div>
 
@@ -155,24 +145,13 @@ export default function Navigation() {
                   </Button>
                 </>
               ) : (
-                <>
-                  <Button
-                    variant="ghost"
-                    onClick={() => window.location.href = '/api/login'}
-                    className="w-full text-sm font-mono uppercase tracking-wider"
-                  >
-                    Login
-                  </Button>
-                  <Link href="/contact">
-                    <Button 
-                      variant="ghost"
-                      className="w-full text-sm font-mono uppercase tracking-wider hover:text-accent minimal-hover"
-                      onClick={() => setIsMenuOpen(false)}
-                    >
-                      CONTACT
-                    </Button>
-                  </Link>
-                </>
+                <Button
+                  variant="ghost"
+                  onClick={() => window.location.href = '/api/login'}
+                  className="w-full text-sm font-mono uppercase tracking-wider"
+                >
+                  Login
+                </Button>
               )}
             </div>
           </div>
