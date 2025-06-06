@@ -128,9 +128,9 @@ export default function Pricing() {
                   <Button
                     variant="outline"
                     className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                    onClick={scrollToContact}
+                    onClick={() => setLocation("/checkout?service=redesign")}
                   >
-                    REDESIGN NOW
+                    BUY NOW
                   </Button>
                 </CardContent>
               </Card>
@@ -169,9 +169,9 @@ export default function Pricing() {
                   <Button
                     variant="outline"
                     className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                    onClick={scrollToContact}
+                    onClick={() => setLocation("/checkout?service=new_website")}
                   >
-                    BUILD NEW SITE
+                    BUY NOW
                   </Button>
                 </CardContent>
               </Card>

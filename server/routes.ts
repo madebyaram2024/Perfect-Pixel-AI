@@ -365,6 +365,95 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Client portal routes - Get order by payment intent ID (public access for customers)
+  app.get("/api/order/:paymentIntentId", async (req, res) => {
+    try {
+      const { paymentIntentId } = req.params;
+      const orders = await storage.getOrders();
+      const order = orders.find(o => o.stripePaymentIntentId === paymentIntentId);
+      
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      // Return limited order information for client portal
+      const clientOrder = {
+        id: order.id,
+        serviceType: order.serviceType,
+        status: order.status,
+        progress: order.progress || 0,
+        progressStage: order.progressStage || 'planning',
+        totalAmount: order.totalAmount,
+        createdAt: order.createdAt,
+        addons: order.addons,
+        hostingType: order.hostingType,
+        projectDetails: order.projectDetails,
+        clientNotes: order.clientNotes
+      };
+      
+      res.json(clientOrder);
+    } catch (error) {
+      console.error("Error fetching order:", error);
+      res.status(500).json({ message: "Failed to fetch order" });
+    }
+  });
+
+  // Update client notes (accessible by payment intent ID)
+  app.put("/api/order/:paymentIntentId/notes", async (req, res) => {
+    try {
+      const { paymentIntentId } = req.params;
+      const { clientNotes } = req.body;
+      
+      const orders = await storage.getOrders();
+      const order = orders.find(o => o.stripePaymentIntentId === paymentIntentId);
+      
+      if (!order) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+      
+      const updatedOrder = await storage.updateOrder(order.id, { clientNotes });
+      res.json({ message: "Notes updated successfully", order: updatedOrder });
+    } catch (error) {
+      console.error("Error updating client notes:", error);
+      res.status(500).json({ message: "Failed to update notes" });
+    }
+  });
+
+  // Webhook for Stripe payment completion
+  app.post("/api/stripe/webhook", express.raw({ type: 'application/json' }), async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    
+    if (!sig) {
+      return res.status(400).send('Missing Stripe signature');
+    }
+
+    try {
+      // Note: In production, you should use the webhook endpoint secret
+      const event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET || 'whsec_test');
+
+      if (event.type === 'payment_intent.succeeded') {
+        const paymentIntent = event.data.object;
+        
+        // Update order status to paid
+        const orders = await storage.getOrders();
+        const order = orders.find(o => o.stripePaymentIntentId === paymentIntent.id);
+        
+        if (order) {
+          await storage.updateOrder(order.id, {
+            status: 'paid',
+            progressStage: 'design',
+            progress: 10
+          });
+        }
+      }
+
+      res.json({ received: true });
+    } catch (err) {
+      console.error('Webhook signature verification failed:', err);
+      res.status(400).send(`Webhook Error: ${err}`);
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }
