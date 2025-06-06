@@ -244,13 +244,45 @@ export default function Admin() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="blog-image">Image URL</Label>
-                    <Input
-                      id="blog-image"
-                      name="imageUrl"
-                      type="url"
-                      defaultValue={editingBlogPost?.imageUrl}
-                    />
+                    <Label htmlFor="blog-image">Image</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        id="blog-image"
+                        name="imageUrl"
+                        type="url"
+                        placeholder="Image URL or upload a file below"
+                        defaultValue={editingBlogPost?.imageUrl}
+                        className="flex-1"
+                      />
+                    </div>
+                    <div className="mt-2">
+                      <Label htmlFor="blog-file-upload" className="cursor-pointer">
+                        <div className="flex items-center gap-2 px-4 py-2 border border-dashed border-border rounded-lg hover:bg-muted/50 transition-colors">
+                          <Upload className="w-4 h-4" />
+                          <span className="text-sm">Upload Image File</span>
+                        </div>
+                      </Label>
+                      <input
+                        id="blog-file-upload"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            try {
+                              const result = await uploadMutation.mutateAsync(file);
+                              const imageUrlInput = document.getElementById('blog-image') as HTMLInputElement;
+                              if (imageUrlInput) {
+                                imageUrlInput.value = result.url;
+                              }
+                            } catch (error) {
+                              console.error('Upload failed:', error);
+                            }
+                          }
+                        }}
+                      />
+                    </div>
                   </div>
                   <div className="flex items-center space-x-2">
                     <Switch
@@ -340,14 +372,46 @@ export default function Admin() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="portfolio-image">Image URL</Label>
-                    <Input
-                      id="portfolio-image"
-                      name="imageUrl"
-                      type="url"
-                      defaultValue={editingPortfolioItem?.imageUrl}
-                      required
-                    />
+                    <Label htmlFor="portfolio-image">Image</Label>
+                    <div className="flex gap-2">
+                      <Input
+                        id="portfolio-image"
+                        name="imageUrl"
+                        type="url"
+                        placeholder="Image URL or upload a file below"
+                        defaultValue={editingPortfolioItem?.imageUrl}
+                        className="flex-1"
+                        required
+                      />
+                    </div>
+                    <div className="mt-2">
+                      <Label htmlFor="portfolio-file-upload" className="cursor-pointer">
+                        <div className="flex items-center gap-2 px-4 py-2 border border-dashed border-border rounded-lg hover:bg-muted/50 transition-colors">
+                          <Upload className="w-4 h-4" />
+                          <span className="text-sm">Upload Image File</span>
+                        </div>
+                      </Label>
+                      <input
+                        id="portfolio-file-upload"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={async (e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            try {
+                              const result = await uploadMutation.mutateAsync(file);
+                              const imageUrlInput = document.getElementById('portfolio-image') as HTMLInputElement;
+                              if (imageUrlInput) {
+                                imageUrlInput.value = result.url;
+                              }
+                            } catch (error) {
+                              console.error('Upload failed:', error);
+                            }
+                          }
+                        }}
+                      />
+                    </div>
                   </div>
                   <div>
                     <Label htmlFor="portfolio-testimonial">Testimonial</Label>
