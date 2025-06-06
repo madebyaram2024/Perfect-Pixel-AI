@@ -61,10 +61,10 @@ export default function Hero() {
         {/* Pricing Display */}
         <div className="mb-12">
           <div className="text-4xl md:text-5xl font-light text-foreground mb-2">
-            Starting at <span className="text-accent">$149</span>
+            Starting at <span className="text-accent">$449</span>
           </div>
           <p className="text-muted-foreground">
-            Website redesigns • New websites from $199 • Hosting from $24.99/mo
+            Website redesigns • New websites from $499 • Hosting from $25/mo
           </p>
         </div>
 

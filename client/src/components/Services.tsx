@@ -15,7 +15,7 @@ export default function Services() {
     {
       icon: RotateCcw,
       title: "Website Redesign",
-      price: "$149",
+      price: "$449",
       description: "Give your existing website a modern makeover that converts better",
       features: [
         "Up to 5 pages redesigned",
@@ -30,7 +30,7 @@ export default function Services() {
     {
       icon: Plus,
       title: "New Website",
-      price: "$199",
+      price: "$499",
       description: "Complete custom website built from scratch for your business",
       features: [
         "Up to 5 custom pages",
@@ -45,7 +45,7 @@ export default function Services() {
     {
       icon: Server,
       title: "Website Hosting",
-      price: "$24.99/mo",
+      price: "$25/mo",
       description: "Reliable hosting with security, backups, and maintenance included",
       features: [
         "99.9% uptime guarantee",

@@ -83,11 +83,11 @@ export default function ChatbotMascot() {
   const getRecommendation = (answers: string[]): ServiceRecommendation => {
     const [projectType, purpose, budget, timeline] = answers;
 
-    // Logic for Website Redesign ($149)
+    // Logic for Website Redesign ($449)
     if (projectType.includes("redesign") || projectType.includes("current")) {
       return {
         service: "Website Redesign",
-        price: "$149",
+        price: "$449",
         reason: "Perfect for updating your existing site with modern design and better performance!",
         features: [
           "Redesign of up to 5 pages",
@@ -98,11 +98,11 @@ export default function ChatbotMascot() {
       };
     }
 
-    // Logic for Website Hosting ($24.99/mo)
+    // Logic for Website Hosting ($25/mo)
     if (projectType.includes("hosting") || projectType.includes("reliable hosting")) {
       return {
         service: "Website Hosting",
-        price: "$24.99/mo",
+        price: "$25/mo",
         reason: "Reliable hosting will keep your website fast, secure, and always available!",
         features: [
           "99.9% uptime guarantee",
@@ -113,10 +113,10 @@ export default function ChatbotMascot() {
       };
     }
 
-    // Default to New Website ($199) - Most Popular
+    // Default to New Website ($499) - Most Popular
     return {
       service: "New Website",
-      price: "$199",
+      price: "$499",
       reason: "A brand new website is perfect for your goals! You'll get everything you need to succeed online.",
       features: [
         "Up to 5 custom pages",
