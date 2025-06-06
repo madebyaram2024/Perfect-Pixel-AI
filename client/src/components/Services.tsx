@@ -47,6 +47,13 @@ export default function Services() {
     },
   ];
 
+  const hostingFeatures = [
+    "Reliable hosting",
+    "Regular backups",
+    "Security updates",
+    "Technical support",
+  ];
+
   const addOns = [
     { name: "eCommerce", price: "$99", description: "Add an online store" },
     { name: "Blog", price: "$49", description: "Share updates and boost SEO" },
@@ -161,18 +168,12 @@ export default function Services() {
               <div className="border-gradient w-full"></div>
 
               <div className="space-y-4 text-left">
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">Reliable hosting</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">Regular backups</p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                  <p className="text-muted-foreground font-light">Security updates</p>
-                </div>
+                {hostingFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
+                ))}
                 <div className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                   <p className="text-muted-foreground font-light">99.9% uptime guarantee</p>

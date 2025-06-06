@@ -106,7 +106,7 @@ export default function Pricing() {
             <CardContent className="p-8 text-center space-y-6">
               <div className="space-y-4">
                 <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Redesign</h3>
-                <div className="text-4xl font-light text-foreground">$199</div>
+                <div className="text-4xl font-light text-foreground">$149</div>
                 <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
                   REFRESH EXISTING
                 </p>
@@ -183,7 +183,7 @@ export default function Pricing() {
             <CardContent className="p-8 text-center space-y-6">
               <div className="space-y-4">
                 <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Hosting</h3>
-                <div className="text-4xl font-light text-foreground">$29<span className="text-lg">/mo</span></div>
+                <div className="text-4xl font-light text-foreground">$24.99<span className="text-lg">/mo</span></div>
                 <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
                   MANAGED HOSTING
                 </p>
