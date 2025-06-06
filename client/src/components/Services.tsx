@@ -69,67 +69,31 @@ export default function Services() {
           <div className="border-gradient mx-auto w-24"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
-          {/* New Website Service */}
-          <div className="bg-card border border-border p-12 minimal-hover">
-            <div className="space-y-8">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-light text-foreground mb-2">New Website</h3>
-                  <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
-                    BUILD FROM SCRATCH
-                  </p>
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-light text-foreground">$199</div>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+          {/* Website Redesign */}
+          <Card className="bg-card border-border transition-all duration-300 hover:shadow-lg">
+            <CardContent className="p-8 text-center space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Redesign</h3>
+                <div className="text-4xl font-light text-foreground">$199</div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                  REFRESH EXISTING
+                </p>
               </div>
 
               <div className="border-gradient w-full"></div>
 
-              <div className="space-y-6">
-                {newWebsiteFeatures.map((feature, index) => (
-                  <div key={index} className="flex items-start gap-3">
-                    <div className="w-1 h-1 bg-accent mt-3 flex-shrink-0"></div>
-                    <p className="text-muted-foreground font-light">{feature}</p>
-                  </div>
-                ))}
-              </div>
-
-              <Button
-                variant="outline"
-                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
-                onClick={() => scrollToSection("contact")}
-              >
-                START PROJECT
-              </Button>
-            </div>
-          </div>
-
-          {/* Website Modernization Service */}
-          <div className="bg-card border border-border p-12 minimal-hover">
-            <div className="space-y-8">
-              <div className="flex items-center justify-between">
-                <div>
-                  <h3 className="text-2xl font-light text-foreground mb-2">Modernization</h3>
-                  <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
-                    REFRESH EXISTING
-                  </p>
-                </div>
-                <div className="text-right">
-                  <div className="text-3xl font-light text-foreground">$149</div>
-                </div>
-              </div>
-
-              <div className="border-gradient w-full"></div>
-
-              <div className="space-y-6">
+              <div className="space-y-4 text-left">
                 {modernizationFeatures.map((feature, index) => (
                   <div key={index} className="flex items-start gap-3">
-                    <div className="w-1 h-1 bg-accent mt-3 flex-shrink-0"></div>
+                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
                     <p className="text-muted-foreground font-light">{feature}</p>
                   </div>
                 ))}
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">Performance optimization</p>
+                </div>
               </div>
 
               <Button
@@ -137,10 +101,97 @@ export default function Services() {
                 className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
                 onClick={() => scrollToSection("contact")}
               >
-                START PROJECT
+                REDESIGN NOW
               </Button>
+            </CardContent>
+          </Card>
+
+          {/* New Website - Most Popular */}
+          <Card className="bg-card border-accent transition-all duration-300 hover:shadow-lg relative">
+            <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+              <span className="bg-accent text-accent-foreground px-3 py-1 text-xs font-mono uppercase tracking-wider">
+                MOST POPULAR
+              </span>
             </div>
-          </div>
+            <CardContent className="p-8 text-center space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">New Website</h3>
+                <div className="text-4xl font-light text-foreground">$199</div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                  COMPLETE BUILD
+                </p>
+              </div>
+
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-4 text-left">
+                {newWebsiteFeatures.map((feature, index) => (
+                  <div key={index} className="flex items-start gap-3">
+                    <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
+                ))}
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">1 month free hosting</p>
+                </div>
+              </div>
+
+              <Button
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
+                onClick={() => scrollToSection("contact")}
+              >
+                BUILD NEW SITE
+              </Button>
+            </CardContent>
+          </Card>
+
+          {/* Website Hosting */}
+          <Card className="bg-card border-border transition-all duration-300 hover:shadow-lg">
+            <CardContent className="p-8 text-center space-y-6">
+              <div className="space-y-4">
+                <h3 className="text-xl font-mono uppercase tracking-wider text-foreground">Website Hosting</h3>
+                <div className="text-4xl font-light text-foreground">$29<span className="text-lg">/mo</span></div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                  MANAGED HOSTING
+                </p>
+              </div>
+
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-4 text-left">
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">Reliable hosting</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">Regular backups</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">Security updates</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">99.9% uptime guarantee</p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Check className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                  <p className="text-muted-foreground font-light">SSL certificate included</p>
+                </div>
+              </div>
+
+              <Button
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
+                onClick={() => scrollToSection("contact")}
+              >
+                START HOSTING
+              </Button>
+            </CardContent>
+          </Card>
         </div>
 
         {/* Process Section */}
