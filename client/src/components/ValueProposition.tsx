@@ -117,7 +117,7 @@ export default function ValueProposition() {
         <div className="text-center">
           <Button
             size="lg"
-            onClick={() => scrollToSection("services")}
+            onClick={() => window.location.href = "/checkout?service=new_website"}
             className="bg-accent text-accent-foreground hover:bg-accent/90 px-8 py-4 text-lg group"
           >
             Start Your Project
