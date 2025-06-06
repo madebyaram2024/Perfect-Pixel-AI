@@ -119,7 +119,11 @@ export default function Services() {
                 {/* CTA Button */}
                 <div className="pt-4">
                   <Button
-                    onClick={() => scrollToSection("contact")}
+                    onClick={() => {
+                      const serviceParam = service.title === "Website Redesign" ? "redesign" : 
+                                         service.title === "New Website" ? "new_website" : "hosting";
+                      window.location.href = `/checkout?service=${serviceParam}`;
+                    }}
                     className={`w-full group ${
                       service.popular 
                         ? 'bg-accent text-accent-foreground hover:bg-accent/90' 
