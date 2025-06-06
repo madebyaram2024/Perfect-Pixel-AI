@@ -55,122 +55,143 @@ export default function Pricing() {
   ];
 
   return (
-    <section id="pricing" className="py-20 bg-muted/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Simple, Transparent Pricing
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We offer affordable website design and modernization with no hidden costs.
-            Our AI technology keeps prices low and quality high.
+    <section id="pricing" className="py-32 bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-24">
+          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-mono mb-8">
+            PRICING
           </p>
+          <h2 className="text-4xl md:text-5xl font-light leading-tight text-foreground mb-8">
+            Simple, transparent
+            <br />
+            <span className="text-gradient">pricing structure</span>
+          </h2>
+          <div className="border-gradient mx-auto w-24"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           {/* New Website Pricing */}
-          <Card className="bg-card shadow-lg border-2 border-primary">
-            <CardContent className="p-8">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-foreground mb-2">New Website</h3>
-                <div className="text-6xl font-bold text-primary mb-2">$199</div>
-                <p className="text-muted-foreground">Perfect for new businesses</p>
+          <div className="bg-card border border-border p-12 minimal-hover">
+            <div className="text-center space-y-8">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-light text-foreground">New Website</h3>
+                <div className="text-5xl font-light text-foreground">$199</div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                  BUILD FROM SCRATCH
+                </p>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-6 text-left">
                 {newWebsiteFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-muted-foreground">{feature}</span>
-                  </li>
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-accent mt-3 flex-shrink-0"></div>
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
 
               <Button
-                className="w-full"
-                size="lg"
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
                 onClick={() => scrollToSection("contact")}
               >
-                Get Started
+                START PROJECT
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Website Modernization Pricing */}
-          <Card className="bg-card shadow-lg">
-            <CardContent className="p-8">
-              <div className="text-center mb-8">
-                <h3 className="text-3xl font-bold text-foreground mb-2">Website Modernization</h3>
-                <div className="text-6xl font-bold text-green-600 mb-2">$149</div>
-                <p className="text-muted-foreground">Perfect for existing businesses</p>
+          <div className="bg-card border border-border p-12 minimal-hover">
+            <div className="text-center space-y-8">
+              <div className="space-y-4">
+                <h3 className="text-2xl font-light text-foreground">Modernization</h3>
+                <div className="text-5xl font-light text-foreground">$149</div>
+                <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                  REFRESH EXISTING
+                </p>
               </div>
 
-              <ul className="space-y-4 mb-8">
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-6 text-left">
                 {modernizationFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-muted-foreground">{feature}</span>
-                  </li>
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-accent mt-3 flex-shrink-0"></div>
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
 
               <Button
-                variant="secondary"
-                className="w-full bg-green-600 hover:bg-green-700 text-white"
-                size="lg"
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
                 onClick={() => scrollToSection("contact")}
               >
-                Get Started
+                START PROJECT
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* Add-On Features */}
-        <Card className="bg-card shadow-lg p-8 mb-16">
-          <h3 className="text-2xl font-bold text-foreground text-center mb-8">Add-On Features</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="mb-24">
+          <div className="text-center mb-16">
+            <h3 className="text-2xl font-light text-foreground mb-4">Add-On Features</h3>
+            <div className="border-gradient mx-auto w-16"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {addOns.map((addon, index) => (
               <div
                 key={index}
-                className="text-center p-6 border border-border rounded-lg hover:shadow-md transition-shadow"
+                className="text-center space-y-4 p-6 border border-border minimal-hover"
               >
-                <h4 className="font-semibold text-foreground mb-2">{addon.name}</h4>
-                <p className="text-3xl font-bold text-primary mb-3">{addon.price}</p>
-                <p className="text-muted-foreground">{addon.description}</p>
+                <h4 className="font-medium text-foreground">{addon.name}</h4>
+                <div className="text-xl font-light text-foreground">{addon.price}</div>
+                <p className="text-sm text-muted-foreground font-light">{addon.description}</p>
               </div>
             ))}
           </div>
-        </Card>
+        </div>
 
         {/* Hosting Plan */}
-        <Card className="bg-gradient-to-r from-primary to-secondary shadow-lg p-8 text-primary-foreground text-center mb-16">
-          <h3 className="text-2xl font-bold mb-4">Optional Hosting Plan</h3>
-          <div className="text-4xl font-bold mb-2">
-            $24.99<span className="text-lg font-normal">/month</span>
-          </div>
-          <p className="mb-6">Let us handle the technical stuff</p>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-            {hostingFeatures.map((feature, index) => (
-              <div key={index} className="flex items-center justify-center">
-                <Check className="w-5 h-5 mr-2" />
-                {feature}
+        <div className="bg-card border border-border p-12 text-center mb-24">
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h3 className="text-2xl font-light text-foreground">Optional Hosting</h3>
+              <div className="text-3xl font-light text-foreground">
+                $24.99<span className="text-base font-mono text-muted-foreground">/month</span>
               </div>
-            ))}
-          </div>
+              <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                MANAGED HOSTING SOLUTION
+              </p>
+            </div>
 
-          <p className="text-blue-100">
-            Take your site anywhere or let us host it for you—your choice!
-          </p>
-        </Card>
+            <div className="border-gradient w-24 mx-auto"></div>
+
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              {hostingFeatures.map((feature, index) => (
+                <div key={index} className="flex items-center justify-center gap-2">
+                  <div className="w-1 h-1 bg-accent"></div>
+                  <span className="text-sm text-muted-foreground font-light">{feature}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-muted-foreground font-light">
+              Host with us or take your files anywhere—your choice.
+            </p>
+          </div>
+        </div>
 
         {/* Why So Affordable */}
         <div className="text-center">
-          <h3 className="text-2xl font-bold text-foreground mb-4">Why So Affordable?</h3>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto">
-            Our AI-powered web design process cuts time and costs, delivering small business websites
-            that compete with expensive custom builds.
+          <h3 className="text-2xl font-light text-foreground mb-6">Why So Affordable?</h3>
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto font-light leading-relaxed">
+            Our AI-powered design process eliminates overhead costs while maintaining 
+            professional quality standards.
           </p>
         </div>
       </div>

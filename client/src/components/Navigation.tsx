@@ -44,24 +44,24 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-border">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-lg border-b border-border">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-primary">PerfectPixelAI</h1>
+            <h1 className="text-lg font-mono tracking-wider text-foreground">PERFECTPIXELAI</h1>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+            <div className="flex items-center space-x-12">
               {navItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  className={`text-sm font-mono uppercase tracking-wider transition-colors minimal-hover ${
                     activeSection === item.id
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      ? "text-foreground"
+                      : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
                   {item.label}
@@ -72,8 +72,12 @@ export default function Navigation() {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button onClick={() => scrollToSection("contact")}>
-              Get Started
+            <Button 
+              variant="ghost"
+              onClick={() => scrollToSection("contact")}
+              className="text-sm font-mono uppercase tracking-wider hover:text-accent minimal-hover"
+            >
+              CONTACT
             </Button>
           </div>
 
@@ -83,8 +87,9 @@ export default function Navigation() {
               variant="ghost"
               size="icon"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-foreground"
             >
-              {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isMenuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </Button>
           </div>
         </div>
@@ -92,27 +97,28 @@ export default function Navigation() {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className="md:hidden bg-white border-t border-border">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="md:hidden bg-background/95 backdrop-blur-lg border-t border-border">
+          <div className="px-6 py-4 space-y-4">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-3 py-2 text-base font-medium transition-colors ${
+                className={`block w-full text-left py-2 text-sm font-mono uppercase tracking-wider transition-colors ${
                   activeSection === item.id
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-primary"
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {item.label}
               </button>
             ))}
-            <div className="px-3 py-2">
+            <div className="pt-4 border-t border-border">
               <Button 
+                variant="ghost"
                 onClick={() => scrollToSection("contact")}
-                className="w-full"
+                className="w-full text-sm font-mono uppercase tracking-wider"
               >
-                Get Started
+                CONTACT
               </Button>
             </div>
           </div>

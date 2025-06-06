@@ -55,134 +55,135 @@ export default function Services() {
   ];
 
   return (
-    <section id="services" className="py-20 bg-muted/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Our AI-Driven Web Design Services
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We specialize in creating and modernizing websites using cutting-edge AI technology.
-            Perfect for small businesses, startups, and freelancers.
+    <section id="services" className="py-32 bg-background border-t border-border">
+      <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="text-center mb-24">
+          <p className="text-sm uppercase tracking-[0.3em] text-muted-foreground font-mono mb-8">
+            SERVICES
           </p>
+          <h2 className="text-4xl md:text-5xl font-light leading-tight text-foreground mb-8">
+            AI-driven web design
+            <br />
+            <span className="text-gradient">for modern businesses</span>
+          </h2>
+          <div className="border-gradient mx-auto w-24"></div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
           {/* New Website Service */}
-          <Card className="service-card bg-card shadow-lg hover:shadow-xl transition-all">
-            <CardContent className="p-8">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mr-4">
-                  <Plus className="w-6 h-6 text-primary" />
-                </div>
+          <div className="bg-card border border-border p-12 minimal-hover">
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">Build a New Website</h3>
-                  <p className="text-3xl font-bold text-primary">$199</p>
+                  <h3 className="text-2xl font-light text-foreground mb-2">New Website</h3>
+                  <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                    BUILD FROM SCRATCH
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="text-3xl font-light text-foreground">$199</div>
                 </div>
               </div>
-              <p className="text-muted-foreground mb-6">
-                Need a website fast? Our AI website builder crafts custom, up to 5-page websites tailored to your brand.
-              </p>
 
-              <h4 className="font-semibold text-foreground mb-4">What's Included:</h4>
-              <ul className="space-y-3 mb-6">
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-6">
                 {newWebsiteFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    {feature}
-                  </li>
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-accent mt-3 flex-shrink-0"></div>
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
 
-              <p className="text-sm text-muted-foreground mb-6">
-                <strong>Perfect For:</strong> New businesses wanting an affordable website design.
-              </p>
               <Button
-                className="w-full"
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
                 onClick={() => scrollToSection("contact")}
               >
-                Get Started
+                START PROJECT
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Website Modernization Service */}
-          <Card className="service-card bg-card shadow-lg hover:shadow-xl transition-all">
-            <CardContent className="p-8">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                  <RotateCcw className="w-6 h-6 text-green-600" />
-                </div>
+          <div className="bg-card border border-border p-12 minimal-hover">
+            <div className="space-y-8">
+              <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-2xl font-bold text-foreground">Modernize Your Website</h3>
-                  <p className="text-3xl font-bold text-green-600">$149</p>
+                  <h3 className="text-2xl font-light text-foreground mb-2">Modernization</h3>
+                  <p className="text-sm uppercase tracking-wider text-muted-foreground font-mono">
+                    REFRESH EXISTING
+                  </p>
+                </div>
+                <div className="text-right">
+                  <div className="text-3xl font-light text-foreground">$149</div>
                 </div>
               </div>
-              <p className="text-muted-foreground mb-6">
-                Have an outdated site? We'll take your existing content, refresh the design, and add modern features.
-              </p>
 
-              <h4 className="font-semibold text-foreground mb-4">What's Included:</h4>
-              <ul className="space-y-3 mb-6">
+              <div className="border-gradient w-full"></div>
+
+              <div className="space-y-6">
                 {modernizationFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    {feature}
-                  </li>
+                  <div key={index} className="flex items-start gap-3">
+                    <div className="w-1 h-1 bg-accent mt-3 flex-shrink-0"></div>
+                    <p className="text-muted-foreground font-light">{feature}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
 
-              <p className="text-sm text-muted-foreground mb-6">
-                <strong>Perfect For:</strong> Businesses needing a modern, updated web presence.
-              </p>
               <Button
-                variant="secondary"
-                className="w-full bg-green-600 hover:bg-green-700 text-white"
+                variant="outline"
+                className="w-full border border-foreground text-foreground hover:bg-foreground hover:text-background font-mono uppercase tracking-wider text-sm py-3 minimal-hover"
                 onClick={() => scrollToSection("contact")}
               >
-                Get Started
+                START PROJECT
               </Button>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
 
         {/* Process Section */}
-        <Card className="bg-card shadow-lg p-8 mb-16">
-          <h3 className="text-2xl font-bold text-foreground text-center mb-12">Our Process</h3>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="mb-24">
+          <div className="text-center mb-16">
+            <h3 className="text-2xl font-light text-foreground mb-4">Our Process</h3>
+            <div className="border-gradient mx-auto w-16"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
             {processSteps.map((step, index) => (
-              <div key={index} className="text-center">
-                <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl font-bold text-primary-foreground">{step.number}</span>
+              <div key={index} className="text-center space-y-4">
+                <div className="w-12 h-12 border border-border bg-card flex items-center justify-center mx-auto font-mono text-sm">
+                  {step.number.toString().padStart(2, '0')}
                 </div>
-                <h4 className="font-semibold text-foreground mb-2">{step.title}</h4>
-                <p className="text-muted-foreground">{step.description}</p>
+                <div className="space-y-2">
+                  <h4 className="font-medium text-foreground">{step.title}</h4>
+                  <p className="text-sm text-muted-foreground font-light">{step.description}</p>
+                </div>
               </div>
             ))}
           </div>
-        </Card>
+        </div>
 
         {/* Add-On Features */}
-        <Card className="bg-card shadow-lg p-8">
-          <h3 className="text-2xl font-bold text-foreground text-center mb-8">Add-On Features</h3>
-          <p className="text-center text-muted-foreground mb-8">Enhance your site with optional extras:</p>
+        <div className="text-center">
+          <h3 className="text-2xl font-light text-foreground mb-4">Add-On Features</h3>
+          <div className="border-gradient mx-auto w-16 mb-12"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {addOns.map((addon, index) => (
-              <div key={index} className="text-center p-4 border border-border rounded-lg">
-                <h4 className="font-semibold text-foreground mb-2">{addon.name}</h4>
-                <p className="text-2xl font-bold text-primary mb-2">{addon.price}</p>
-                <p className="text-sm text-muted-foreground">{addon.description}</p>
+              <div key={index} className="text-center space-y-4 p-6 border border-border minimal-hover">
+                <h4 className="font-medium text-foreground">{addon.name}</h4>
+                <div className="text-xl font-light text-foreground">{addon.price}</div>
+                <p className="text-sm text-muted-foreground font-light">{addon.description}</p>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-8">
-            <p className="text-lg font-semibold text-foreground">
-              With PerfectPixelAI, you own your website files—host with us or anywhere you choose!
-            </p>
-          </div>
-        </Card>
+          <p className="text-muted-foreground font-light">
+            With PerfectPixelAI, you own your website files—host with us or anywhere you choose.
+          </p>
+        </div>
       </div>
     </section>
   );
