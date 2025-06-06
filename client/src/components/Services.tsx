@@ -78,9 +78,10 @@ export default function Services() {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className={`relative border-border hover:shadow-lg transition-all duration-300 ${
+              className={`group relative border-border hover:shadow-2xl hover:shadow-accent/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 cursor-pointer ${
                 service.popular ? 'border-accent shadow-lg scale-105' : ''
               }`}
+              style={{ animationDelay: `${index * 200}ms` }}
             >
               {service.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
@@ -93,20 +94,24 @@ export default function Services() {
               <CardContent className="p-8 space-y-6">
                 {/* Service Icon & Title */}
                 <div className="text-center">
-                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <service.icon className="w-8 h-8 text-accent" />
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent/20 group-hover:scale-110 transition-all duration-300">
+                    <service.icon className="w-8 h-8 text-accent group-hover:scale-110 transition-transform duration-300" />
                   </div>
-                  <h3 className="text-xl font-medium text-foreground mb-2">{service.title}</h3>
-                  <div className="text-3xl font-light text-foreground mb-3">{service.price}</div>
-                  <p className="text-muted-foreground text-sm">{service.description}</p>
+                  <h3 className="text-xl font-medium text-foreground mb-2 group-hover:text-accent transition-colors duration-300">{service.title}</h3>
+                  <div className="text-3xl font-light text-foreground mb-3 group-hover:text-accent transition-colors duration-300">{service.price}</div>
+                  <p className="text-muted-foreground text-sm group-hover:text-foreground transition-colors duration-300">{service.description}</p>
                 </div>
 
                 {/* Features List */}
                 <div className="space-y-3">
                   {service.features.map((feature, featureIndex) => (
-                    <div key={featureIndex} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-muted-foreground text-sm">{feature}</span>
+                    <div 
+                      key={featureIndex} 
+                      className="flex items-start gap-3 group/feature opacity-80 group-hover:opacity-100 transition-all duration-300"
+                      style={{ transitionDelay: `${featureIndex * 50}ms` }}
+                    >
+                      <div className="w-2 h-2 bg-accent rounded-full mt-2 flex-shrink-0 group-hover/feature:scale-125 transition-transform duration-200"></div>
+                      <span className="text-muted-foreground text-sm group-hover/feature:text-foreground transition-colors duration-200">{feature}</span>
                     </div>
                   ))}
                 </div>

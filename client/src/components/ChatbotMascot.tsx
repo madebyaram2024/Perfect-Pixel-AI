@@ -205,22 +205,39 @@ export default function ChatbotMascot() {
 
   return (
     <>
-      {/* Floating Chat Button */}
+      {/* Floating Chat Button with Enhanced Animations */}
       <div className="fixed bottom-6 right-6 z-50">
-        <Button
-          onClick={() => {
-            setIsOpen(!isOpen);
-            if (!isOpen) handleStartChat();
-          }}
-          className="w-16 h-16 rounded-full bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg transition-all duration-300 hover:scale-110"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
-        </Button>
-        
-        {/* Pulsing notification dot */}
-        {!isOpen && (
-          <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-        )}
+        <div className="relative group">
+          <Button
+            onClick={() => {
+              setIsOpen(!isOpen);
+              if (!isOpen) handleStartChat();
+            }}
+            className="w-16 h-16 rounded-full bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-accent-foreground shadow-2xl transition-all duration-500 hover:scale-110 hover:rotate-3 group-hover:shadow-accent/30 animate-float"
+          >
+            <div className="transition-transform duration-300 group-hover:scale-110">
+              {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6 animate-pulse" />}
+            </div>
+          </Button>
+          
+          {/* Ripple effect */}
+          <div className="absolute inset-0 rounded-full bg-accent/30 animate-ping opacity-75"></div>
+          
+          {/* Pulsing notification dot with bounce */}
+          {!isOpen && (
+            <div className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-bounce shadow-lg">
+              <div className="w-full h-full bg-red-400 rounded-full animate-pulse"></div>
+            </div>
+          )}
+          
+          {/* Tooltip */}
+          <div className="absolute bottom-full right-0 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+            <div className="bg-foreground text-background text-xs px-3 py-1 rounded-lg whitespace-nowrap">
+              Need help choosing a service?
+              <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-foreground"></div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Chat Window */}
@@ -261,36 +278,43 @@ export default function ChatbotMascot() {
                 </div>
               )}
 
-              {messages.map((message) => (
-                <div key={message.id} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
+              {messages.map((message, index) => (
+                <div 
+                  key={message.id} 
+                  className={`flex ${message.isBot ? 'justify-start' : 'justify-end'} animate-fade-in-up`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
                   <div className={`max-w-[80%] ${message.isBot ? 'order-2' : 'order-1'}`}>
                     {message.isBot && (
-                      <div className="flex items-center gap-2 mb-1">
-                        <Bot className="w-4 h-4 text-accent" />
+                      <div className="flex items-center gap-2 mb-1 animate-fade-in-up" style={{ animationDelay: `${index * 100 + 50}ms` }}>
+                        <Bot className="w-4 h-4 text-accent animate-pulse" />
                         <span className="text-xs text-muted-foreground font-mono">PixelBot</span>
                       </div>
                     )}
                     
-                    <div className={`p-3 rounded-lg ${
+                    <div className={`p-3 rounded-lg transition-all duration-300 hover:scale-105 ${
                       message.isBot 
-                        ? 'bg-accent/10 text-foreground' 
-                        : 'bg-accent text-accent-foreground'
+                        ? 'bg-accent/10 text-foreground hover:bg-accent/20' 
+                        : 'bg-gradient-to-r from-accent to-primary text-accent-foreground hover:from-accent/90 hover:to-primary/90 shadow-lg'
                     }`}>
                       <p className="text-sm font-light">{message.text}</p>
                     </div>
 
-                    {/* Options */}
+                    {/* Options with staggered animations */}
                     {message.options && (
                       <div className="mt-3 space-y-2">
-                        {message.options.map((option, index) => (
+                        {message.options.map((option, optionIndex) => (
                           <Button
-                            key={index}
+                            key={optionIndex}
                             variant="outline"
                             size="sm"
                             onClick={() => handleOptionClick(option)}
-                            className="w-full text-left justify-start text-xs font-light border-accent/30 hover:bg-accent/10"
+                            className="w-full text-left justify-start text-xs font-light border-accent/30 hover:bg-accent/10 hover:border-accent hover:scale-105 transition-all duration-300 animate-fade-in-up"
+                            style={{ animationDelay: `${optionIndex * 150 + 300}ms` }}
                           >
-                            {option}
+                            <span className="transition-transform duration-200 group-hover:translate-x-1">
+                              {option}
+                            </span>
                           </Button>
                         ))}
                       </div>
