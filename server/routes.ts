@@ -288,38 +288,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Serve uploaded files
   app.use('/uploads', express.static('uploads'));
 
-  // Stripe payment routes
+  // Enhanced Stripe payment routes
   app.post("/api/create-payment-intent", async (req, res) => {
     try {
-      const { serviceType, addons, hostingType, email, projectDetails } = req.body;
+      const { serviceType, basePrice, addons, hostingType, totalAmount, customerInfo } = req.body;
       
-      // Calculate pricing
-      let basePrice = serviceType === 'new_website' ? 999 : 699; // New website $999, redesign $699
-      let totalAmount = basePrice;
-      
-      // Add addon pricing
-      const addonPricing: Record<string, number> = {
-        'ecommerce': 299,
-        'booking': 199,
-        'menu': 99,
-        'gallery': 149,
-        'blog': 199,
-        'contact_forms': 99,
-        'social_media': 49,
-        'analytics': 79,
-        'seo': 199,
-        'multilingual': 249,
-      };
-
-      addons.forEach((addon: any) => {
-        totalAmount += addonPricing[addon.id] || 0;
-      });
-
-      // Add hosting if selected
-      if (hostingType === 'managed') {
-        totalAmount += 29; // Monthly hosting fee
-      }
-
       const paymentIntent = await stripe.paymentIntents.create({
         amount: Math.round(totalAmount * 100), // Convert to cents
         currency: "usd",
@@ -327,27 +300,41 @@ export async function registerRoutes(app: Express): Promise<Server> {
           serviceType,
           addons: JSON.stringify(addons),
           hostingType,
-          email,
+          customerEmail: customerInfo.email,
+          customerName: customerInfo.name,
         },
       });
 
       // Create order record
       const orderData = {
-        email,
+        email: customerInfo.email,
         serviceType,
         basePrice: basePrice.toString(),
-        addons: JSON.stringify(addons),
+        addons: JSON.stringify(addons.map((id: string) => {
+          const addonMap: Record<string, any> = {
+            'ecommerce': { id, name: 'E-commerce Integration', price: 200 },
+            'cms': { id, name: 'Content Management System', price: 150 },
+            'seo_premium': { id, name: 'Premium SEO Package', price: 100 },
+            'analytics': { id, name: 'Advanced Analytics Setup', price: 75 },
+            'social_media': { id, name: 'Social Media Integration', price: 50 },
+            'booking': { id, name: 'Online Booking System', price: 125 },
+          };
+          return addonMap[id] || { id, name: 'Unknown Add-on', price: 0 };
+        })),
         hostingType,
         totalAmount: totalAmount.toString(),
         stripePaymentIntentId: paymentIntent.id,
-        projectDetails,
+        projectDetails: customerInfo.projectDetails || '',
         status: 'pending',
+        progress: 0,
+        progressStage: 'planning',
       };
 
-      await storage.createOrder(orderData);
+      const order = await storage.createOrder(orderData);
 
       res.json({ 
         clientSecret: paymentIntent.client_secret,
+        orderId: order.id,
         amount: totalAmount 
       });
     } catch (error: any) {

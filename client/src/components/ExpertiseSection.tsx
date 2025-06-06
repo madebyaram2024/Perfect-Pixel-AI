@@ -205,7 +205,7 @@ export default function ExpertiseSection() {
               onClick={() => scrollToSection("contact")}
               className="border-foreground text-foreground hover:bg-foreground hover:text-background px-8 py-4"
             >
-              Get Free Consultation
+              Buy Now
             </Button>
           </div>
         </div>

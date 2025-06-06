@@ -152,7 +152,7 @@ export default function Services() {
               onClick={() => scrollToSection("contact")}
               className="border-foreground text-foreground hover:bg-foreground hover:text-background px-6 py-3"
             >
-              Get Free Consultation
+              Buy Now
             </Button>
             <Button
               onClick={() => {

@@ -118,7 +118,10 @@ export const orders = pgTable("orders", {
   totalAmount: decimal("total_amount", { precision: 10, scale: 2 }).notNull(),
   stripePaymentIntentId: text("stripe_payment_intent_id"),
   status: text("status").default('pending'), // 'pending', 'paid', 'in_progress', 'completed'
+  progress: integer("progress").default(0), // 0-100
+  progressStage: text("progress_stage").default('planning'), // 'planning', 'design', 'development', 'testing', 'launch'
   projectDetails: text("project_details"),
+  clientNotes: text("client_notes"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
