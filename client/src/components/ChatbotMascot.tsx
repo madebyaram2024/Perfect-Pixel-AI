@@ -120,9 +120,9 @@ export default function ChatbotMascot() {
       reason: "A brand new website is perfect for your goals! You'll get everything you need to succeed online.",
       features: [
         "Up to 5 custom pages",
-        "Responsive design for all devices",
-        "Basic SEO optimization",
-        "1 month free hosting"
+        "Mobile responsive design",
+        "SEO optimization included",
+        "30-day revision period"
       ]
     };
   };
