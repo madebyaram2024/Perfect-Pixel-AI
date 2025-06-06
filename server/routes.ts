@@ -1,10 +1,55 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import Stripe from "stripe";
+import multer from "multer";
+import path from "path";
+import express from "express";
 import { storage } from "./storage";
+import { setupAuth, isAuthenticated, isAdmin } from "./replitAuth";
 import { insertContactSchema } from "@shared/schema";
 import { z } from "zod";
 
+if (!process.env.STRIPE_SECRET_KEY) {
+  throw new Error('Missing required Stripe secret: STRIPE_SECRET_KEY');
+}
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: "2023-10-16",
+});
+
+// Configure multer for file uploads
+const upload = multer({
+  dest: 'uploads/',
+  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = /jpeg|jpg|png|gif|webp/;
+    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
+    const mimetype = allowedTypes.test(file.mimetype);
+    
+    if (mimetype && extname) {
+      return cb(null, true);
+    } else {
+      cb(new Error('Only image files are allowed'));
+    }
+  }
+});
+
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Auth middleware setup
+  await setupAuth(app);
+
+  // Auth routes
+  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      res.status(500).json({ message: "Failed to fetch user" });
+    }
+  });
+
   // Contact form submission endpoint
   app.post("/api/contact", async (req, res) => {
     try {
@@ -27,8 +72,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Get all contacts (for admin use)
-  app.get("/api/contacts", async (req, res) => {
+  // Admin: Get all contacts
+  app.get("/api/contacts", isAuthenticated, isAdmin, async (req, res) => {
     try {
       const contacts = await storage.getContacts();
       res.json(contacts);
@@ -37,6 +82,230 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "Internal server error" 
       });
+    }
+  });
+
+  // Blog routes
+  app.get("/api/blog/posts", async (req, res) => {
+    try {
+      const published = req.query.published === 'false' ? false : true;
+      const posts = await storage.getBlogPosts(published);
+      res.json(posts);
+    } catch (error) {
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ message: "Failed to fetch blog posts" });
+    }
+  });
+
+  app.get("/api/blog/posts/:slug", async (req, res) => {
+    try {
+      const post = await storage.getBlogPost(req.params.slug);
+      if (!post) {
+        return res.status(404).json({ message: "Blog post not found" });
+      }
+      res.json(post);
+    } catch (error) {
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ message: "Failed to fetch blog post" });
+    }
+  });
+
+  // Admin: Blog management
+  app.post("/api/admin/blog/posts", isAuthenticated, isAdmin, async (req: any, res) => {
+    try {
+      const postData = {
+        ...req.body,
+        authorId: req.user.claims.sub,
+        slug: req.body.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, ''),
+      };
+      const post = await storage.createBlogPost(postData);
+      res.json(post);
+    } catch (error) {
+      console.error("Error creating blog post:", error);
+      res.status(500).json({ message: "Failed to create blog post" });
+    }
+  });
+
+  app.put("/api/admin/blog/posts/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const post = await storage.updateBlogPost(id, req.body);
+      res.json(post);
+    } catch (error) {
+      console.error("Error updating blog post:", error);
+      res.status(500).json({ message: "Failed to update blog post" });
+    }
+  });
+
+  app.delete("/api/admin/blog/posts/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteBlogPost(id);
+      res.json({ message: "Blog post deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting blog post:", error);
+      res.status(500).json({ message: "Failed to delete blog post" });
+    }
+  });
+
+  // Portfolio routes
+  app.get("/api/portfolio/items", async (req, res) => {
+    try {
+      const items = await storage.getPortfolioItems();
+      res.json(items);
+    } catch (error) {
+      console.error("Error fetching portfolio items:", error);
+      res.status(500).json({ message: "Failed to fetch portfolio items" });
+    }
+  });
+
+  // Admin: Portfolio management
+  app.post("/api/admin/portfolio/items", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const item = await storage.createPortfolioItem(req.body);
+      res.json(item);
+    } catch (error) {
+      console.error("Error creating portfolio item:", error);
+      res.status(500).json({ message: "Failed to create portfolio item" });
+    }
+  });
+
+  app.put("/api/admin/portfolio/items/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const item = await storage.updatePortfolioItem(id, req.body);
+      res.json(item);
+    } catch (error) {
+      console.error("Error updating portfolio item:", error);
+      res.status(500).json({ message: "Failed to update portfolio item" });
+    }
+  });
+
+  app.delete("/api/admin/portfolio/items/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deletePortfolioItem(id);
+      res.json({ message: "Portfolio item deleted successfully" });
+    } catch (error) {
+      console.error("Error deleting portfolio item:", error);
+      res.status(500).json({ message: "Failed to delete portfolio item" });
+    }
+  });
+
+  // Image upload endpoint
+  app.post("/api/admin/upload", isAuthenticated, isAdmin, upload.single('image'), async (req: any, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: "No file uploaded" });
+      }
+
+      const uploadData = {
+        filename: req.file.filename,
+        originalName: req.file.originalname,
+        mimeType: req.file.mimetype,
+        size: req.file.size,
+        url: `/uploads/${req.file.filename}`,
+        uploadedBy: req.user.claims.sub,
+      };
+
+      const upload = await storage.createUpload(uploadData);
+      res.json(upload);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      res.status(500).json({ message: "Failed to upload file" });
+    }
+  });
+
+  // Serve uploaded files
+  app.use('/uploads', express.static('uploads'));
+
+  // Stripe payment routes
+  app.post("/api/create-payment-intent", async (req, res) => {
+    try {
+      const { serviceType, addons, hostingType, email, projectDetails } = req.body;
+      
+      // Calculate pricing
+      let basePrice = serviceType === 'new_website' ? 999 : 699; // New website $999, redesign $699
+      let totalAmount = basePrice;
+      
+      // Add addon pricing
+      const addonPricing: Record<string, number> = {
+        'ecommerce': 299,
+        'booking': 199,
+        'menu': 99,
+        'gallery': 149,
+        'blog': 199,
+        'contact_forms': 99,
+        'social_media': 49,
+        'analytics': 79,
+        'seo': 199,
+        'multilingual': 249,
+      };
+
+      addons.forEach((addon: any) => {
+        totalAmount += addonPricing[addon.id] || 0;
+      });
+
+      // Add hosting if selected
+      if (hostingType === 'managed') {
+        totalAmount += 29; // Monthly hosting fee
+      }
+
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: Math.round(totalAmount * 100), // Convert to cents
+        currency: "usd",
+        metadata: {
+          serviceType,
+          addons: JSON.stringify(addons),
+          hostingType,
+          email,
+        },
+      });
+
+      // Create order record
+      const orderData = {
+        email,
+        serviceType,
+        basePrice: basePrice.toString(),
+        addons: JSON.stringify(addons),
+        hostingType,
+        totalAmount: totalAmount.toString(),
+        stripePaymentIntentId: paymentIntent.id,
+        projectDetails,
+        status: 'pending',
+      };
+
+      await storage.createOrder(orderData);
+
+      res.json({ 
+        clientSecret: paymentIntent.client_secret,
+        amount: totalAmount 
+      });
+    } catch (error: any) {
+      console.error("Error creating payment intent:", error);
+      res.status(500).json({ message: "Error creating payment intent: " + error.message });
+    }
+  });
+
+  // Admin: Orders management
+  app.get("/api/admin/orders", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const orders = await storage.getOrders();
+      res.json(orders);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      res.status(500).json({ message: "Failed to fetch orders" });
+    }
+  });
+
+  app.put("/api/admin/orders/:id", isAuthenticated, isAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const order = await storage.updateOrder(id, req.body);
+      res.json(order);
+    } catch (error) {
+      console.error("Error updating order:", error);
+      res.status(500).json({ message: "Failed to update order" });
     }
   });
 
