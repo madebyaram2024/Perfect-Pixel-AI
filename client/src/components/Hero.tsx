@@ -86,7 +86,7 @@ export default function Hero() {
         {/* CTA Buttons */}
         <div className="animate-fade-in-up delay-1000">
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-16">
-            <Link href="/pricing">
+            <Link href="/checkout?service=new_website">
               <Button
                 size="lg"
                 className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-accent-foreground px-10 py-5 text-lg group shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:scale-105"
