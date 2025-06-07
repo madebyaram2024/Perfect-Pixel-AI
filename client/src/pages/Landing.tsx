@@ -2,7 +2,7 @@ import Hero from "@/components/Hero";
 import ValueProposition from "@/components/ValueProposition";
 import Services from "@/components/Services";
 import Portfolio from "@/components/Portfolio";
-import Contact from "@/components/Contact";
+import FAQ from "@/components/FAQ";
 import ChatbotMascot from "@/components/ChatbotMascot";
 
 export default function Landing() {
@@ -20,8 +20,8 @@ export default function Landing() {
       <section id="portfolio">
         <Portfolio />
       </section>
-      <section id="contact">
-        <Contact />
+      <section id="faq">
+        <FAQ />
       </section>
       
       <ChatbotMascot />

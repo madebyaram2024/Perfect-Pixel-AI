@@ -206,10 +206,14 @@ export default function ChatbotMascot() {
   };
 
   const scrollToContact = () => {
-    const element = document.getElementById('contact');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // Try to scroll to FAQ section first (on landing page), fallback to contact page
+    const faqElement = document.getElementById('faq');
+    if (faqElement) {
+      faqElement.scrollIntoView({ behavior: 'smooth' });
       setIsOpen(false);
+    } else {
+      // If no FAQ section, navigate to contact page
+      window.location.href = '/contact';
     }
   };
 
