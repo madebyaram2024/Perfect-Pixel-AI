@@ -289,7 +289,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // File upload endpoint (images and videos)
-  app.post("/api/admin/upload", isAuthenticated, isAdmin, upload.single('file'), async (req: any, res) => {
+  app.post("/api/admin/upload", isAuthenticated, upload.single('file'), async (req: any, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
