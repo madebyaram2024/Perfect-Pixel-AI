@@ -11,50 +11,50 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Slow start and freeze frame effect
+    // Cinematic timing: slow start, normal speed, dramatic slowdown
     const handleVideoPlay = () => {
       video.playbackRate = 0.3; // Start very slow
       
-      // Gradually increase speed
+      // Gradually increase to normal speed
       setTimeout(() => {
         video.playbackRate = 0.6;
       }, 1000);
       
       setTimeout(() => {
-        video.playbackRate = 0.8;
-      }, 2000);
-      
-      setTimeout(() => {
         video.playbackRate = 1.0; // Normal speed
-      }, 3000);
+      }, 2000);
     };
 
-    // Gradual slowdown at the end
+    // Dramatic slowdown at the end
     let hasStartedSlowdown = false;
     let hasReachedEnd = false;
     
     const handleTimeUpdate = () => {
-      if (video.duration) {
+      if (video.duration && !hasReachedEnd) {
         const timeRemaining = video.duration - video.currentTime;
         
-        // Start slowing down when 2 seconds remain
-        if (timeRemaining <= 2 && !hasStartedSlowdown) {
+        // Start dramatic slowdown when 3 seconds remain
+        if (timeRemaining <= 3 && !hasStartedSlowdown) {
           hasStartedSlowdown = true;
           
-          // Gradually slow down: 100% -> 50% -> 10%
+          // Dramatic slowdown: 100% -> 50% -> 10% -> freeze
           setTimeout(() => {
             if (video.playbackRate > 0) video.playbackRate = 0.5;
-          }, 500);
+          }, 0);
           
           setTimeout(() => {
-            if (video.playbackRate > 0) video.playbackRate = 0.1;
-          }, 1000);
+            if (video.playbackRate > 0) video.playbackRate = 0.2;
+          }, 800);
+          
+          setTimeout(() => {
+            if (video.playbackRate > 0) video.playbackRate = 0.05;
+          }, 1500);
           
           setTimeout(() => {
             video.pause();
-            video.currentTime = video.duration - 0.2;
+            video.currentTime = video.duration - 0.1;
             hasReachedEnd = true;
-          }, 1500);
+          }, 2200);
         }
       }
     };
