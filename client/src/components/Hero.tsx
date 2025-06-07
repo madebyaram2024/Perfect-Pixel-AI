@@ -29,11 +29,12 @@ export default function Hero() {
       }, 3000);
     };
 
-    // Freeze on last frame
+    // Freeze on first frame after one loop
     const handleTimeUpdate = () => {
       if (video.duration && video.currentTime >= video.duration - 0.1) {
         video.playbackRate = 0;
-        video.currentTime = video.duration;
+        video.currentTime = 0; // Reset to first frame
+        video.pause();
       }
     };
 
@@ -61,7 +62,6 @@ export default function Hero() {
           ref={videoRef}
           autoPlay
           muted
-          loop
           playsInline
           className="absolute inset-0 w-full h-full object-cover hero-video"
           style={{
