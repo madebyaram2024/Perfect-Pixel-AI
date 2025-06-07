@@ -31,7 +31,7 @@ export default function Hero() {
       </div>
       
       {/* Text Readability Enhancement */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent from-20% via-background/60 via-50% to-transparent to-80%"></div>
+      <div className="absolute inset-0 hero-text-overlay"></div>
       
       {/* Floating Elements - Symmetrical */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
