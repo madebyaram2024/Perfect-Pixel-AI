@@ -136,15 +136,18 @@ export default function Admin() {
   const uploadMutation = useMutation({
     mutationFn: async (file: File) => {
       const formData = new FormData();
-      formData.append('image', file);
-      return apiRequest("POST", "/api/admin/upload", formData);
+      formData.append('file', file);
+      const response = await apiRequest("POST", "/api/admin/upload", formData);
+      return response.json();
     },
     onSuccess: (data) => {
-      toast({ title: "Image uploaded successfully" });
-      return data.url;
+      const fileType = data.mimeType?.startsWith('video/') ? 'video' : 'image';
+      toast({ title: `${fileType.charAt(0).toUpperCase() + fileType.slice(1)} uploaded successfully` });
+      return data;
     },
-    onError: () => {
-      toast({ title: "Failed to upload image", variant: "destructive" });
+    onError: (error) => {
+      console.error('Upload error:', error);
+      toast({ title: "Failed to upload file", variant: "destructive" });
     },
   });
 

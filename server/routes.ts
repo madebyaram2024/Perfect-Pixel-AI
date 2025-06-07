@@ -18,16 +18,16 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 // Configure multer for file uploads
 const upload = multer({
   dest: 'uploads/',
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB limit
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit for videos
   fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|gif|webp/;
+    const allowedTypes = /jpeg|jpg|png|gif|webp|mp4|webm|mov|avi/;
     const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
+    const mimetype = /^(image|video)\//.test(file.mimetype);
     
     if (mimetype && extname) {
       return cb(null, true);
     } else {
-      cb(new Error('Only image files are allowed'));
+      cb(new Error('Only image and video files are allowed'));
     }
   }
 });
@@ -288,8 +288,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  // Image upload endpoint
-  app.post("/api/admin/upload", isAuthenticated, isAdmin, upload.single('image'), async (req: any, res) => {
+  // File upload endpoint (images and videos)
+  app.post("/api/admin/upload", isAuthenticated, isAdmin, upload.single('file'), async (req: any, res) => {
     try {
       if (!req.file) {
         return res.status(400).json({ message: "No file uploaded" });
@@ -304,8 +304,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
         uploadedBy: req.user.claims.sub,
       };
 
-      const upload = await storage.createUpload(uploadData);
-      res.json(upload);
+      const uploadRecord = await storage.createUpload(uploadData);
+      res.json({ 
+        ...uploadRecord,
+        url: uploadRecord.url // Ensure URL is returned for frontend
+      });
     } catch (error) {
       console.error("Error uploading file:", error);
       res.status(500).json({ message: "Failed to upload file" });
