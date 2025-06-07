@@ -163,9 +163,9 @@ export default function FAQ() {
             Important Disclaimers & Policies
           </h3>
           
-          <div className="flex flex-col lg:flex-row gap-6 text-sm text-muted-foreground leading-relaxed">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }} className="text-sm text-muted-foreground leading-relaxed">
             {/* Left Column */}
-            <div className="flex-1 space-y-4">
+            <div className="space-y-4">
               <div>
                 <strong className="text-foreground">AI-Assisted Development:</strong> We use artificial intelligence technology to enhance our web development process, including content generation, design optimization, and code assistance. While AI helps us deliver efficient results, all AI-generated content is reviewed and refined by our human development team. However, AI can sometimes make mistakes, so we require your careful review of all content before final approval.
               </div>
@@ -176,7 +176,7 @@ export default function FAQ() {
             </div>
             
             {/* Right Column */}
-            <div className="flex-1 space-y-4">
+            <div className="space-y-4">
               <div>
                 <strong className="text-foreground">Content Responsibility:</strong> You are responsible for reviewing and approving all website content, including text, images, contact information, business details, pricing, and functionality before final submission. While we review everything thoroughly, the final accuracy and appropriateness of your website content is your responsibility.
               </div>
