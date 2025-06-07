@@ -2,8 +2,50 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Check, Star } from "lucide-react";
 import { Link } from "wouter";
+import { useEffect, useRef } from "react";
 
 export default function Hero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Slow start and freeze frame effect
+    const handleVideoPlay = () => {
+      video.playbackRate = 0.3; // Start very slow
+      
+      // Gradually increase speed
+      setTimeout(() => {
+        video.playbackRate = 0.6;
+      }, 1000);
+      
+      setTimeout(() => {
+        video.playbackRate = 0.8;
+      }, 2000);
+      
+      setTimeout(() => {
+        video.playbackRate = 1.0; // Normal speed
+      }, 3000);
+    };
+
+    // Freeze on last frame
+    const handleTimeUpdate = () => {
+      if (video.duration && video.currentTime >= video.duration - 0.1) {
+        video.playbackRate = 0;
+        video.currentTime = video.duration;
+      }
+    };
+
+    video.addEventListener('play', handleVideoPlay);
+    video.addEventListener('timeupdate', handleTimeUpdate);
+
+    return () => {
+      video.removeEventListener('play', handleVideoPlay);
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -16,6 +58,7 @@ export default function Hero() {
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
         <video
+          ref={videoRef}
           autoPlay
           muted
           loop

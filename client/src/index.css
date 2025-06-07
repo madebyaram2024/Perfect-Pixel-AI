@@ -154,17 +154,25 @@
       transform: scale(1.02);
       opacity: 0.9;
     }
+    85% {
+      animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(1.2) contrast(1.4) blur(0px);
+      transform: scale(1);
+      opacity: 1;
+    }
     100% {
       animation-timing-function: ease-in-out;
       filter: brightness(1.2) contrast(1.4) blur(0px);
       transform: scale(1);
       opacity: 1;
+      animation-play-state: paused;
     }
   }
 
   .hero-video {
-    animation: smooth-video-play 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    animation: smooth-video-play 5s cubic-bezier(0.2, 0, 0.1, 1) forwards;
     will-change: filter, transform, opacity;
+    animation-fill-mode: both;
   }
 
   .hero-video:hover {
