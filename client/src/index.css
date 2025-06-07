@@ -120,6 +120,19 @@
     animation: fade-in-up 0.6s ease-out;
   }
 
+  /* FAQ Disclaimer Grid */
+  .disclaimer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .disclaimer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
   @keyframes float {
     0%, 100% {
       transform: translateY(0px);

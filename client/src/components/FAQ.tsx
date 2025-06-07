@@ -163,7 +163,7 @@ export default function FAQ() {
             Important Disclaimers & Policies
           </h3>
           
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }} className="text-sm text-muted-foreground leading-relaxed">
+          <div className="disclaimer-grid text-sm text-muted-foreground leading-relaxed">
             {/* Left Column */}
             <div className="space-y-4">
               <div>
