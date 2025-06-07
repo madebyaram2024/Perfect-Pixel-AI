@@ -29,11 +29,11 @@ export default function Hero() {
       }, 3000);
     };
 
-    // Freeze on first frame after one loop
+    // Freeze on last frame
     const handleTimeUpdate = () => {
       if (video.duration && video.currentTime >= video.duration - 0.1) {
         video.playbackRate = 0;
-        video.currentTime = 0; // Reset to first frame
+        video.currentTime = video.duration; // Stay on last frame
         video.pause();
       }
     };
