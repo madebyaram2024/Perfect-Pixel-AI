@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MessageCircle, X, Bot, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { MessageCircle, X, Bot, ArrowRight, Send } from "lucide-react";
 
 interface ChatMessage {
   id: string;
@@ -21,6 +22,17 @@ export default function ChatbotMascot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [currentStep, setCurrentStep] = useState(0);
+  const [inputText, setInputText] = useState("");
+  const [isTyping, setIsTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   const questions = [
     {
@@ -105,24 +117,92 @@ export default function ChatbotMascot() {
   };
 
   const handleOptionClick = (option: string) => {
+    processUserMessage(option);
+  };
+
+  const processUserMessage = (message: string) => {
     // Add user message
-    addMessage(option, false);
+    addMessage(message, false);
+    setIsTyping(true);
     
     setTimeout(() => {
-      if (currentStep < questions.length - 1) {
-        setCurrentStep(currentStep + 1);
-        addMessage(questions[currentStep + 1].text, true, questions[currentStep + 1].options);
-      } else {
-        // Show recommendation
-        const recommendation = getRecommendation([option]);
+      setIsTyping(false);
+      
+      // Simple AI-like responses based on keywords
+      const lowerMessage = message.toLowerCase();
+      
+      if (lowerMessage.includes("pricing") || lowerMessage.includes("price") || lowerMessage.includes("cost")) {
+        addMessage("Our pricing is transparent and affordable:", true, undefined, {
+          service: "Pricing Overview",
+          price: "From $449",
+          reason: "We offer competitive pricing for professional web design services.",
+          features: [
+            "New Website: $499",
+            "Website Redesign: $449", 
+            "Hosting: $25/month",
+            "All prices include professional design"
+          ]
+        });
+      } else if (lowerMessage.includes("hosting") || lowerMessage.includes("server")) {
+        const recommendation = getRecommendation(["hosting"]);
         addMessage(
-          `Perfect! Based on your needs, I recommend our ${recommendation.service}. ${recommendation.reason}`,
+          `Great question about hosting! ${recommendation.reason}`,
           true,
           undefined,
           recommendation
         );
+      } else if (lowerMessage.includes("redesign") || lowerMessage.includes("update") || lowerMessage.includes("improve")) {
+        const recommendation = getRecommendation(["redesign"]);
+        addMessage(
+          `I'd be happy to help with a redesign! ${recommendation.reason}`,
+          true,
+          undefined,
+          recommendation
+        );
+      } else if (lowerMessage.includes("new") || lowerMessage.includes("create") || lowerMessage.includes("build")) {
+        const recommendation = getRecommendation(["new website"]);
+        addMessage(
+          `Exciting! Let's build you a new website. ${recommendation.reason}`,
+          true,
+          undefined,
+          recommendation
+        );
+      } else if (lowerMessage.includes("hello") || lowerMessage.includes("hi") || lowerMessage.includes("hey")) {
+        addMessage("Hello! I'm PixelBot, your AI assistant. I can help you choose the perfect website solution for your business. What would you like to know?", true, [
+          "Tell me about pricing",
+          "I need a new website",
+          "I want to redesign my site",
+          "Do you offer hosting?"
+        ]);
+      } else if (lowerMessage.includes("help") || lowerMessage.includes("support")) {
+        addMessage("I'm here to help! I can assist you with:", true, [
+          "Website pricing information",
+          "Service recommendations",
+          "Technical questions",
+          "Getting started process"
+        ]);
+      } else {
+        // Default helpful response
+        addMessage("That's a great question! Based on what you're looking for, I'd recommend checking out our services. Would you like me to suggest the best option for you?", true, [
+          "Yes, recommend a service",
+          "Tell me about pricing", 
+          "I need more information"
+        ]);
       }
-    }, 1000);
+    }, 800);
+  };
+
+  const handleSendMessage = () => {
+    if (inputText.trim()) {
+      processUserMessage(inputText);
+      setInputText("");
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
   };
 
   const scrollToContact = () => {
@@ -163,7 +243,7 @@ export default function ChatbotMascot() {
             </div>
           </div>
 
-          <CardContent className="p-0 h-[400px] overflow-y-auto">
+          <CardContent className="p-0 h-[350px] overflow-y-auto">
             <div className="p-4 space-y-4">
               {messages.map((message) => (
                 <div key={message.id} className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}>
@@ -228,8 +308,50 @@ export default function ChatbotMascot() {
                   </div>
                 </div>
               ))}
+
+              {/* Typing Indicator */}
+              {isTyping && (
+                <div className="flex justify-start">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 bg-accent rounded-full flex items-center justify-center">
+                      <Bot className="w-3 h-3 text-black" />
+                    </div>
+                    <div className="bg-muted p-3 rounded-lg">
+                      <div className="flex gap-1">
+                        <div className="w-2 h-2 bg-accent rounded-full animate-bounce"></div>
+                        <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+                        <div className="w-2 h-2 bg-accent rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div ref={messagesEndRef} />
             </div>
           </CardContent>
+
+          {/* Message Input */}
+          <div className="p-4 border-t border-border">
+            <div className="flex gap-2">
+              <Input
+                value={inputText}
+                onChange={(e) => setInputText(e.target.value)}
+                onKeyPress={handleKeyPress}
+                placeholder="Type your message..."
+                className="flex-1"
+                disabled={isTyping}
+              />
+              <Button
+                onClick={handleSendMessage}
+                disabled={!inputText.trim() || isTyping}
+                className="bg-accent hover:bg-accent/90 text-black"
+                size="sm"
+              >
+                <Send className="w-4 h-4" />
+              </Button>
+            </div>
+          </div>
         </Card>
       )}
     </>
