@@ -78,6 +78,18 @@ export default function FAQ() {
     {
       question: "How much does a professional website cost?",
       answer: "Professional website pricing starts at $499 for new websites, $449 for redesigns, and $25/month for premium hosting. Final investment depends on your specific requirements, number of pages, custom features, and functionality needed. E-commerce capabilities start at $299 additional. We provide transparent, detailed quotes with no hidden fees. Most small business websites range from $499-$899 total."
+    },
+    {
+      question: "Do you use AI in your web development process?",
+      answer: "Yes, we leverage AI technology to enhance our development process and content creation capabilities. Our team combines AI-powered tools with human expertise to deliver efficient, high-quality websites. AI helps us with initial content generation, design suggestions, and code optimization. However, all AI-generated content and code is reviewed, refined, and approved by our human developers before implementation."
+    },
+    {
+      question: "What is your approval process and refund policy?",
+      answer: "Our development process includes two key checkpoints for your protection: 1) First Checkpoint - We present initial design and content for your review. If you're not satisfied at this stage, you can request a full refund. 2) Final Checkpoint - After incorporating your feedback, we present the completed website. At this stage, you can request corrections but refunds are no longer available. You are responsible for reviewing all content, text, images, and functionality before giving final approval, as you'll own the website completely upon completion."
+    },
+    {
+      question: "What should I review before approving my website?",
+      answer: "Before final approval, carefully review all website content including text accuracy, contact information, business details, product descriptions, pricing, images, links functionality, contact forms, and overall design. While we use AI to assist with content generation and our human developers review everything, you are ultimately responsible for ensuring all information is correct and represents your business accurately. We recommend having multiple team members review the site before approval."
     }
   ];
 
@@ -142,6 +154,38 @@ export default function FAQ() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Important Disclaimers */}
+        <div className="mt-16 p-6 bg-card border border-border rounded-lg">
+          <h3 className="text-xl font-medium text-foreground mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 bg-accent rounded-full"></span>
+            Important Disclaimers & Policies
+          </h3>
+          
+          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+            <div>
+              <strong className="text-foreground">AI-Assisted Development:</strong> We use artificial intelligence technology to enhance our web development process, including content generation, design optimization, and code assistance. While AI helps us deliver efficient results, all AI-generated content is reviewed and refined by our human development team. However, AI can sometimes make mistakes, so we require your careful review of all content before final approval.
+            </div>
+            
+            <div>
+              <strong className="text-foreground">Collaboration Process:</strong> Your website is built through collaboration between AI tools, professional human developers, and your feedback. We combine the efficiency of AI with human expertise and creativity to deliver high-quality results while maintaining full transparency about our process.
+            </div>
+            
+            <div>
+              <strong className="text-foreground">Content Responsibility:</strong> You are responsible for reviewing and approving all website content, including text, images, contact information, business details, pricing, and functionality before final submission. While we review everything thoroughly, the final accuracy and appropriateness of your website content is your responsibility.
+            </div>
+            
+            <div>
+              <strong className="text-foreground">Approval Checkpoints & Refund Policy:</strong>
+              <ul className="mt-2 ml-4 space-y-1">
+                <li>• <strong>First Checkpoint:</strong> Initial design and content presentation - Full refund available if not satisfied</li>
+                <li>• <strong>Final Checkpoint:</strong> Completed website presentation - Corrections available, but no refunds after this point</li>
+                <li>• Once you approve the first checkpoint, refunds are no longer available</li>
+                <li>• At final submission, you can request corrections but cannot request a refund</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         {/* Call to Action */}
