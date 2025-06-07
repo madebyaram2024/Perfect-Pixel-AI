@@ -158,32 +158,38 @@ export default function FAQ() {
 
         {/* Important Disclaimers */}
         <div className="mt-16 p-6 bg-card border border-border rounded-lg">
-          <h3 className="text-xl font-medium text-foreground mb-4 flex items-center gap-2">
+          <h3 className="text-xl font-medium text-foreground mb-6 flex items-center gap-2">
             <span className="w-2 h-2 bg-accent rounded-full"></span>
             Important Disclaimers & Policies
           </h3>
           
-          <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
-            <div>
-              <strong className="text-foreground">AI-Assisted Development:</strong> We use artificial intelligence technology to enhance our web development process, including content generation, design optimization, and code assistance. While AI helps us deliver efficient results, all AI-generated content is reviewed and refined by our human development team. However, AI can sometimes make mistakes, so we require your careful review of all content before final approval.
+          <div className="grid md:grid-cols-2 gap-6 text-sm text-muted-foreground leading-relaxed">
+            {/* Left Column */}
+            <div className="space-y-4">
+              <div>
+                <strong className="text-foreground">AI-Assisted Development:</strong> We use artificial intelligence technology to enhance our web development process, including content generation, design optimization, and code assistance. While AI helps us deliver efficient results, all AI-generated content is reviewed and refined by our human development team. However, AI can sometimes make mistakes, so we require your careful review of all content before final approval.
+              </div>
+              
+              <div>
+                <strong className="text-foreground">Collaboration Process:</strong> Your website is built through collaboration between AI tools, professional human developers, and your feedback. We combine the efficiency of AI with human expertise and creativity to deliver high-quality results while maintaining full transparency about our process.
+              </div>
             </div>
             
-            <div>
-              <strong className="text-foreground">Collaboration Process:</strong> Your website is built through collaboration between AI tools, professional human developers, and your feedback. We combine the efficiency of AI with human expertise and creativity to deliver high-quality results while maintaining full transparency about our process.
-            </div>
-            
-            <div>
-              <strong className="text-foreground">Content Responsibility:</strong> You are responsible for reviewing and approving all website content, including text, images, contact information, business details, pricing, and functionality before final submission. While we review everything thoroughly, the final accuracy and appropriateness of your website content is your responsibility.
-            </div>
-            
-            <div>
-              <strong className="text-foreground">Approval Checkpoints & Refund Policy:</strong>
-              <ul className="mt-2 ml-4 space-y-1">
-                <li>• <strong>First Checkpoint:</strong> Initial design and content presentation - Full refund available if not satisfied</li>
-                <li>• <strong>Final Checkpoint:</strong> Completed website presentation - Corrections available, but no refunds after this point</li>
-                <li>• Once you approve the first checkpoint, refunds are no longer available</li>
-                <li>• At final submission, you can request corrections but cannot request a refund</li>
-              </ul>
+            {/* Right Column */}
+            <div className="space-y-4">
+              <div>
+                <strong className="text-foreground">Content Responsibility:</strong> You are responsible for reviewing and approving all website content, including text, images, contact information, business details, pricing, and functionality before final submission. While we review everything thoroughly, the final accuracy and appropriateness of your website content is your responsibility.
+              </div>
+              
+              <div>
+                <strong className="text-foreground">Approval Checkpoints & Refund Policy:</strong>
+                <ul className="mt-2 ml-4 space-y-1">
+                  <li>• <strong>First Checkpoint:</strong> Initial design and content presentation - Full refund available if not satisfied</li>
+                  <li>• <strong>Final Checkpoint:</strong> Completed website presentation - Corrections available, but no refunds after this point</li>
+                  <li>• Once you approve the first checkpoint, refunds are no longer available</li>
+                  <li>• At final submission, you can request corrections but cannot request a refund</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
