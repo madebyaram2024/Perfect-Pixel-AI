@@ -29,15 +29,33 @@ export default function Hero() {
       }, 3000);
     };
 
-    // Freeze 2 frames before the end
+    // Gradual slowdown at the end
+    let hasStartedSlowdown = false;
     let hasReachedEnd = false;
     
     const handleTimeUpdate = () => {
-      if (video.duration && video.currentTime >= video.duration - 0.5 && !hasReachedEnd) {
-        hasReachedEnd = true;
-        video.pause();
-        // Stop 2 frames before the actual end
-        video.currentTime = video.duration - 0.2;
+      if (video.duration) {
+        const timeRemaining = video.duration - video.currentTime;
+        
+        // Start slowing down when 2 seconds remain
+        if (timeRemaining <= 2 && !hasStartedSlowdown) {
+          hasStartedSlowdown = true;
+          
+          // Gradually slow down: 100% -> 50% -> 10%
+          setTimeout(() => {
+            if (video.playbackRate > 0) video.playbackRate = 0.5;
+          }, 500);
+          
+          setTimeout(() => {
+            if (video.playbackRate > 0) video.playbackRate = 0.1;
+          }, 1000);
+          
+          setTimeout(() => {
+            video.pause();
+            video.currentTime = video.duration - 0.2;
+            hasReachedEnd = true;
+          }, 1500);
+        }
       }
     };
 
