@@ -2,15 +2,15 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://perfectpixelai.com/sitemap.xml
+Sitemap: https://web-site-wizard-madebyaram.replit.app/sitemap.xml
 
-# Block admin areas
+# Disallow admin areas
 Disallow: /admin
 Disallow: /api/
 
 # Allow important pages
 Allow: /
-Allow: /pricing
 Allow: /portfolio
 Allow: /blog
+Allow: /pricing
 Allow: /contact
