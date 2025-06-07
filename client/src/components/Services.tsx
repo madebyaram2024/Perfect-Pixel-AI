@@ -164,7 +164,7 @@ export default function Services() {
                     if (chatButton) chatButton.click();
                   }}
                   variant="outline"
-                  className="border-2 border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent px-6 py-3"
+                  className="border-2 border-background text-background hover:bg-background hover:text-accent px-6 py-3"
                 >
                   Ask Our AI Assistant
                 </Button>
