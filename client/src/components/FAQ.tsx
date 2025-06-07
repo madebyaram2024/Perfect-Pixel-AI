@@ -163,7 +163,7 @@ export default function FAQ() {
             Important Disclaimers & Policies
           </h3>
           
-          <div className="grid md:grid-cols-2 gap-6 text-sm text-muted-foreground leading-relaxed">
+          <div className="grid grid-cols-1 min-[900px]:grid-cols-2 gap-6 text-sm text-muted-foreground leading-relaxed">
             {/* Left Column */}
             <div className="space-y-4">
               <div>
