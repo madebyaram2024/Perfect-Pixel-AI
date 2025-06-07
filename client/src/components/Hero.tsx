@@ -30,8 +30,8 @@ export default function Hero() {
         </video>
       </div>
       
-      {/* Balanced Video Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background/15 via-transparent to-background/15"></div>
+      {/* Text Readability Enhancement */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/10 to-transparent"></div>
       
       {/* Floating Elements - Symmetrical */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
