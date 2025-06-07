@@ -141,7 +141,7 @@ export default function Services() {
 
         {/* Additional Info with Yellow Background */}
         <div className="relative -mx-6 mt-40">
-          <div className="bg-gradient-to-b from-accent to-accent/80 px-6 py-16">
+          <div className="bg-gradient-to-b from-accent via-accent to-yellow-500 px-6 py-16">
             <div className="max-w-3xl mx-auto text-center">
               <h3 className="text-xl font-medium text-accent-foreground mb-4">
                 Not sure which option is right for you?
