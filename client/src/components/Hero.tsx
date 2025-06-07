@@ -29,21 +29,32 @@ export default function Hero() {
       }, 3000);
     };
 
-    // Freeze on last frame
+    // Freeze 2 frames before the end
+    let hasReachedEnd = false;
+    
     const handleTimeUpdate = () => {
-      if (video.duration && video.currentTime >= video.duration - 0.1) {
-        video.playbackRate = 0;
-        video.currentTime = video.duration; // Stay on last frame
+      if (video.duration && video.currentTime >= video.duration - 0.5 && !hasReachedEnd) {
+        hasReachedEnd = true;
         video.pause();
+        // Stop 2 frames before the actual end
+        video.currentTime = video.duration - 0.2;
       }
+    };
+
+    // Handle when video ends naturally
+    const handleVideoEnd = () => {
+      video.currentTime = video.duration - 0.2;
+      video.pause();
     };
 
     video.addEventListener('play', handleVideoPlay);
     video.addEventListener('timeupdate', handleTimeUpdate);
+    video.addEventListener('ended', handleVideoEnd);
 
     return () => {
       video.removeEventListener('play', handleVideoPlay);
       video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.removeEventListener('ended', handleVideoEnd);
     };
   }, []);
 
