@@ -52,7 +52,7 @@ export default function Navigation() {
     }`}>
       {/* Scroll Progress Bar */}
       <div 
-        className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent to-primary transition-all duration-300"
+        className="absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300"
         style={{ width: `${scrollProgress}%` }}
       />
       
@@ -125,7 +125,7 @@ export default function Navigation() {
                   className="text-sm font-mono uppercase tracking-wider group relative overflow-hidden bg-accent/5 hover:bg-accent/20 border border-accent/20 hover:border-accent/40 transition-all duration-300"
                 >
                   <span className="relative z-10 transition-all duration-200 group-hover:scale-105 group-hover:text-accent">Login</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-primary/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                  <div className="absolute inset-0 bg-accent/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                 </Button>
               </Link>
             )}

@@ -22,7 +22,7 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover hero-video"
           style={{
-            filter: 'brightness(0.3) contrast(1.1)',
+            filter: 'brightness(0.7) contrast(1.2)',
           }}
         >
           <source src="/uploads/hero-background.mp4" type="video/mp4" />
@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="absolute inset-0 noise-bg opacity-10"></div>
       
       {/* Video Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/90"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/60 via-background/40 to-background/70"></div>
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
@@ -96,7 +96,7 @@ export default function Hero() {
         <div className="animate-fade-in-up delay-700 mb-12">
           <div className="bg-card/20 backdrop-blur-sm border border-border/30 rounded-2xl p-8 max-w-lg mx-auto shadow-xl hover:shadow-2xl transition-all duration-500">
             <div className="text-4xl md:text-5xl font-light text-foreground mb-3">
-              Starting at <span className="text-accent font-medium bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent">$449</span>
+              Starting at <span className="text-accent font-medium">$449</span>
             </div>
             <p className="text-muted-foreground text-lg">
               Website redesigns • New websites from $499 • Hosting from $25/mo
@@ -110,7 +110,7 @@ export default function Hero() {
             <Link href="/checkout?service=new_website">
               <Button
                 size="lg"
-                className="bg-gradient-to-r from-accent to-primary hover:from-accent/90 hover:to-primary/90 text-accent-foreground px-10 py-5 text-lg group shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:scale-105"
+                className="bg-accent hover:bg-accent/90 text-accent-foreground px-10 py-5 text-lg group shadow-2xl hover:shadow-accent/25 transition-all duration-300 transform hover:scale-105"
               >
                 Get Started Now
                 <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
