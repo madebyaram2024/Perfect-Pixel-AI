@@ -12,10 +12,31 @@ export default function Hero() {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-card/30 relative overflow-hidden">
-      {/* Enhanced Background Effects */}
+    <section className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 w-full h-full">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover hero-video"
+          style={{
+            filter: 'brightness(0.3) contrast(1.1)',
+          }}
+        >
+          <source src="/uploads/hero-background.mp4" type="video/mp4" />
+          <source src="/uploads/hero-background.webm" type="video/webm" />
+        </video>
+      </div>
+      
+      {/* Fallback Background Effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/30"></div>
       <div className="absolute inset-0 grid-pattern opacity-20"></div>
       <div className="absolute inset-0 noise-bg opacity-10"></div>
+      
+      {/* Video Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/90"></div>
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>

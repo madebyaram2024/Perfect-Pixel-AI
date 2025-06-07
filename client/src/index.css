@@ -140,6 +140,38 @@
     animation-delay: 1000ms;
   }
 
+  /* Hero Video Smooth Animation */
+  @keyframes smooth-video-play {
+    0% {
+      animation-timing-function: ease-out;
+      filter: brightness(0.3) contrast(1.1) blur(2px);
+      transform: scale(1.05);
+      opacity: 0.8;
+    }
+    15% {
+      animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+      filter: brightness(0.3) contrast(1.1) blur(1px);
+      transform: scale(1.02);
+      opacity: 0.9;
+    }
+    100% {
+      animation-timing-function: ease-in-out;
+      filter: brightness(0.3) contrast(1.1) blur(0px);
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  .hero-video {
+    animation: smooth-video-play 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    will-change: filter, transform, opacity;
+  }
+
+  .hero-video:hover {
+    transition: all 2s cubic-bezier(0.25, 0.1, 0.25, 1);
+    filter: brightness(0.35) contrast(1.2) !important;
+  }
+
   @keyframes gradient-x {
     0%, 100% {
       background-position: 0% 50%;

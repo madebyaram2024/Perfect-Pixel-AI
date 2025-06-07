@@ -194,9 +194,10 @@ export default function Admin() {
         </div>
 
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-4">
+          <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="blog">Blog Posts</TabsTrigger>
             <TabsTrigger value="portfolio">Portfolio</TabsTrigger>
+            <TabsTrigger value="media">Media</TabsTrigger>
             <TabsTrigger value="contacts">Contacts</TabsTrigger>
             <TabsTrigger value="orders">Orders</TabsTrigger>
           </TabsList>
@@ -532,6 +533,62 @@ export default function Admin() {
                 </Card>
               ))}
             </div>
+          </TabsContent>
+
+          <TabsContent value="media" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Hero Background Video</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div>
+                    <Label htmlFor="hero-video">Current Video URL</Label>
+                    <Input
+                      id="hero-video"
+                      type="url"
+                      placeholder="Upload a video file below"
+                      readOnly
+                      className="bg-muted"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="hero-video-upload" className="cursor-pointer">
+                      <div className="flex items-center gap-2 px-6 py-4 border border-dashed border-border rounded-lg hover:bg-muted/50 transition-colors">
+                        <Upload className="w-5 h-5" />
+                        <span>Upload Hero Background Video</span>
+                        <span className="text-sm text-muted-foreground">(MP4, WebM, or MOV)</span>
+                      </div>
+                    </Label>
+                    <input
+                      id="hero-video-upload"
+                      type="file"
+                      accept="video/mp4,video/webm,video/mov"
+                      className="hidden"
+                      onChange={async (e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          try {
+                            const result = await uploadMutation.mutateAsync(file);
+                            const videoInput = document.getElementById('hero-video') as HTMLInputElement;
+                            if (videoInput) {
+                              videoInput.value = result.url;
+                            }
+                            toast({ title: "Hero video uploaded successfully!" });
+                          } catch (error) {
+                            console.error('Video upload failed:', error);
+                          }
+                        }
+                      }}
+                    />
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Upload a background video for the hero section. The video will automatically loop with smooth start/stop animation.
+                    Recommended: 1920x1080, under 10MB for best performance.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
           </TabsContent>
 
           <TabsContent value="contacts" className="space-y-6">
