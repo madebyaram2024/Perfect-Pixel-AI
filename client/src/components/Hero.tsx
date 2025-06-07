@@ -38,10 +38,13 @@ export default function Hero() {
       {/* Video Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-background/10 to-background/30"></div>
       
-      {/* Floating Elements */}
+      {/* Floating Elements - Symmetrical */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute top-20 right-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse delay-500"></div>
+      <div className="absolute bottom-20 left-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div className="absolute bottom-20 right-10 w-48 h-48 bg-primary/5 rounded-full blur-3xl animate-pulse delay-1500"></div>
       <div className="absolute top-1/2 left-20 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-bounce"></div>
+      <div className="absolute top-1/2 right-20 w-24 h-24 bg-accent/10 rounded-full blur-2xl animate-bounce delay-700"></div>
       
       <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
         {/* Trust Badge */}
