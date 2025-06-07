@@ -118,42 +118,86 @@ export default function FAQ() {
           </p>
         </div>
 
-        {/* FAQ Items */}
-        <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <Card 
-              key={index}
-              className="border-border hover:border-accent/30 transition-all duration-300"
-            >
-              <CardContent className="p-0">
-                <button
-                  onClick={() => toggleItem(index)}
-                  className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-accent/5 transition-colors duration-300"
-                >
-                  <h3 className="text-lg font-medium text-foreground pr-4">
-                    {faq.question}
-                  </h3>
-                  <div className="flex-shrink-0">
-                    {openItems.includes(index) ? (
-                      <ChevronUp className="w-5 h-5 text-accent" />
-                    ) : (
-                      <ChevronDown className="w-5 h-5 text-muted-foreground" />
-                    )}
-                  </div>
-                </button>
-                
-                {openItems.includes(index) && (
-                  <div className="px-6 pb-5">
-                    <div className="border-t border-border pt-4">
-                      <p className="text-muted-foreground leading-relaxed">
-                        {faq.answer}
-                      </p>
+        {/* FAQ Items - Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Left Column */}
+          <div className="space-y-4">
+            {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
+              <Card 
+                key={index}
+                className="border-border hover:border-accent/30 transition-all duration-300"
+              >
+                <CardContent className="p-0">
+                  <button
+                    onClick={() => toggleItem(index)}
+                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-accent/5 transition-colors duration-300"
+                  >
+                    <h3 className="text-lg font-medium text-foreground pr-4">
+                      {faq.question}
+                    </h3>
+                    <div className="flex-shrink-0">
+                      {openItems.includes(index) ? (
+                        <ChevronUp className="w-5 h-5 text-accent" />
+                      ) : (
+                        <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                      )}
                     </div>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          ))}
+                  </button>
+                  
+                  {openItems.includes(index) && (
+                    <div className="px-6 pb-5">
+                      <div className="border-t border-border pt-4">
+                        <p className="text-muted-foreground leading-relaxed">
+                          {faq.answer}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Right Column */}
+          <div className="space-y-4">
+            {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => {
+              const actualIndex = index + Math.ceil(faqs.length / 2);
+              return (
+                <Card 
+                  key={actualIndex}
+                  className="border-border hover:border-accent/30 transition-all duration-300"
+                >
+                  <CardContent className="p-0">
+                    <button
+                      onClick={() => toggleItem(actualIndex)}
+                      className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-accent/5 transition-colors duration-300"
+                    >
+                      <h3 className="text-lg font-medium text-foreground pr-4">
+                        {faq.question}
+                      </h3>
+                      <div className="flex-shrink-0">
+                        {openItems.includes(actualIndex) ? (
+                          <ChevronUp className="w-5 h-5 text-accent" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5 text-muted-foreground" />
+                        )}
+                      </div>
+                    </button>
+                    
+                    {openItems.includes(actualIndex) && (
+                      <div className="px-6 pb-5">
+                        <div className="border-t border-border pt-4">
+                          <p className="text-muted-foreground leading-relaxed">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
 
         {/* Important Disclaimers */}
