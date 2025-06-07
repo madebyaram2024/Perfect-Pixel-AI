@@ -139,35 +139,37 @@ export default function Services() {
           ))}
         </div>
 
-        {/* Additional Info */}
-        <div className="text-center mt-40 space-y-4">
-          <div className="max-w-3xl mx-auto">
-            <h3 className="text-xl font-medium text-foreground mb-4">
-              Not sure which option is right for you?
-            </h3>
-            <p className="text-muted-foreground mb-4">
-              Our AI-powered chatbot can help recommend the perfect solution based on your specific needs and budget.
-            </p>
-          </div>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              variant="outline"
-              onClick={() => window.location.href = "/checkout?service=new_website"}
-              className="border-foreground text-foreground hover:bg-foreground hover:text-background px-6 py-3"
-            >
-              Buy Now
-            </Button>
-            <Button
-              onClick={() => {
-                // Trigger chatbot to open with service recommendation flow
-                const chatButton = document.querySelector('[data-chatbot-trigger]') as HTMLElement;
-                if (chatButton) chatButton.click();
-              }}
-              className="bg-accent text-accent-foreground hover:bg-accent/90 px-6 py-3"
-            >
-              Ask Our AI Assistant
-            </Button>
+        {/* Additional Info with Yellow Background */}
+        <div className="relative -mx-6 mt-40">
+          <div className="bg-accent px-6 py-16">
+            <div className="max-w-3xl mx-auto text-center">
+              <h3 className="text-xl font-medium text-accent-foreground mb-4">
+                Not sure which option is right for you?
+              </h3>
+              <p className="text-accent-foreground/80 mb-8">
+                Our AI-powered chatbot can help recommend the perfect solution based on your specific needs and budget.
+              </p>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  variant="outline"
+                  onClick={() => window.location.href = "/checkout?service=new_website"}
+                  className="border-accent-foreground text-accent-foreground hover:bg-accent-foreground hover:text-accent px-6 py-3"
+                >
+                  Buy Now
+                </Button>
+                <Button
+                  onClick={() => {
+                    // Trigger chatbot to open with service recommendation flow
+                    const chatButton = document.querySelector('[data-chatbot-trigger]') as HTMLElement;
+                    if (chatButton) chatButton.click();
+                  }}
+                  className="bg-background text-foreground hover:bg-background/90 px-6 py-3"
+                >
+                  Ask Our AI Assistant
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
