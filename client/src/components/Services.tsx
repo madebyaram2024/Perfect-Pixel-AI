@@ -140,7 +140,7 @@ export default function Services() {
         </div>
 
         {/* Additional Info */}
-        <div className="text-center mt-32 space-y-4">
+        <div className="text-center mt-40 space-y-4">
           <div className="max-w-3xl mx-auto">
             <h3 className="text-xl font-medium text-foreground mb-4">
               Not sure which option is right for you?
