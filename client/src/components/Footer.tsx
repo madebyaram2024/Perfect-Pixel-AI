@@ -26,7 +26,7 @@ export default function Footer() {
               </h4>
               <div className="flex items-center gap-3">
                 <a
-                  href="https://facebook.com/perfectpixelai"
+                  href="https://www.facebook.com/perfectpixelaisocial/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 bg-border hover:bg-accent/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
@@ -34,7 +34,7 @@ export default function Footer() {
                   <Facebook className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
                 </a>
                 <a
-                  href="https://instagram.com/perfectpixelai"
+                  href="https://www.instagram.com/perfect_pixel_ai/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-9 h-9 bg-border hover:bg-accent/20 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 group"
