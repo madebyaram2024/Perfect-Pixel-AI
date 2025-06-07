@@ -50,10 +50,10 @@ export default function Portfolio() {
   }
 
   return (
-    <section className="py-16 bg-card/20">
+    <section className="py-12 bg-card/20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Compact Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-8">
           <h2 className="text-2xl md:text-3xl font-light text-foreground mb-4">
             Recent Work
           </h2>
@@ -63,7 +63,7 @@ export default function Portfolio() {
         </div>
 
         {/* Enhanced Grid with Micro-interactions */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
           {featuredItems.map((item, index) => (
             <Card 
               key={item.id} 

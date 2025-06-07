@@ -140,12 +140,12 @@ export default function Services() {
         </div>
 
         {/* Additional Info */}
-        <div className="text-center mt-16 space-y-6">
+        <div className="text-center mt-12 space-y-4">
           <div className="max-w-3xl mx-auto">
             <h3 className="text-xl font-medium text-foreground mb-4">
               Not sure which option is right for you?
             </h3>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-4">
               Our AI-powered chatbot can help recommend the perfect solution based on your specific needs and budget.
             </p>
           </div>
