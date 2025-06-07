@@ -11,21 +11,12 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Cinematic timing: slow start, normal speed, dramatic slowdown
+    // Cinematic timing: start at 80%, then dramatic slowdown
     const handleVideoPlay = () => {
-      video.playbackRate = 0.3; // Start very slow
-      
-      // Gradually increase to normal speed
-      setTimeout(() => {
-        video.playbackRate = 0.6;
-      }, 1000);
-      
-      setTimeout(() => {
-        video.playbackRate = 1.0; // Normal speed
-      }, 2000);
+      video.playbackRate = 0.8; // Start at 80% speed
     };
 
-    // Dramatic slowdown at the end
+    // Dramatic slowdown progression: 80% -> 50% -> 25% -> 5% -> freeze
     let hasStartedSlowdown = false;
     let hasReachedEnd = false;
     
@@ -33,28 +24,28 @@ export default function Hero() {
       if (video.duration && !hasReachedEnd) {
         const timeRemaining = video.duration - video.currentTime;
         
-        // Start dramatic slowdown when 3 seconds remain
-        if (timeRemaining <= 3 && !hasStartedSlowdown) {
+        // Start dramatic slowdown when 4 seconds remain
+        if (timeRemaining <= 4 && !hasStartedSlowdown) {
           hasStartedSlowdown = true;
           
-          // Dramatic slowdown: 100% -> 50% -> 10% -> freeze
+          // Dramatic slowdown: 80% -> 50% -> 25% -> 5% -> freeze
           setTimeout(() => {
             if (video.playbackRate > 0) video.playbackRate = 0.5;
           }, 0);
           
           setTimeout(() => {
-            if (video.playbackRate > 0) video.playbackRate = 0.2;
-          }, 800);
+            if (video.playbackRate > 0) video.playbackRate = 0.25;
+          }, 1000);
           
           setTimeout(() => {
             if (video.playbackRate > 0) video.playbackRate = 0.05;
-          }, 1500);
+          }, 2000);
           
           setTimeout(() => {
             video.pause();
             video.currentTime = video.duration - 0.1;
             hasReachedEnd = true;
-          }, 2200);
+          }, 3000);
         }
       }
     };
