@@ -22,7 +22,7 @@ export default function Hero() {
           playsInline
           className="absolute inset-0 w-full h-full object-cover hero-video"
           style={{
-            filter: 'brightness(0.7) contrast(1.2)',
+            filter: 'brightness(1.2) contrast(1.4)',
           }}
         >
           <source src="/uploads/hero-background.mp4" type="video/mp4" />
@@ -36,7 +36,7 @@ export default function Hero() {
       <div className="absolute inset-0 noise-bg opacity-10"></div>
       
       {/* Video Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/60 via-background/40 to-background/70"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-background/10 to-background/30"></div>
       
       {/* Floating Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
