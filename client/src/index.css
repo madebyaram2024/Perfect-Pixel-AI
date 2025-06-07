@@ -173,11 +173,20 @@
   }
 
   .hero-text-overlay {
-    background: linear-gradient(
+    background: rgba(0, 0, 0, 0.6);
+    mask: linear-gradient(
       to bottom,
       transparent 0%,
       transparent 20%,
-      rgba(0, 0, 0, 0.6) 50%,
+      black 50%,
+      transparent 80%,
+      transparent 100%
+    );
+    -webkit-mask: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 20%,
+      black 50%,
       transparent 80%,
       transparent 100%
     );
