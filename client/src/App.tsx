@@ -7,6 +7,7 @@ import { useAuth } from "@/hooks/useAuth";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CursorTrail from "@/components/CursorTrail";
+import OnboardingTutorial from "@/components/OnboardingTutorial";
 
 // Pages
 import Landing from "@/pages/Landing";
@@ -53,6 +54,7 @@ function App() {
             <Router />
           </main>
           <Footer />
+          <OnboardingTutorial />
           <Toaster />
         </div>
       </TooltipProvider>
