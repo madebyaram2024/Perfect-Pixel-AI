@@ -30,13 +30,8 @@ export default function Hero() {
         </video>
       </div>
       
-      {/* Fallback Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-card/30"></div>
-      <div className="absolute inset-0 grid-pattern opacity-20"></div>
-      <div className="absolute inset-0 noise-bg opacity-10"></div>
-      
-      {/* Video Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/20 via-background/10 to-background/30"></div>
+      {/* Minimal Video Enhancement */}
+      <div className="absolute inset-0 bg-background/5"></div>
       
       {/* Floating Elements - Symmetrical */}
       <div className="absolute top-20 left-10 w-32 h-32 bg-accent/5 rounded-full blur-3xl animate-pulse"></div>
