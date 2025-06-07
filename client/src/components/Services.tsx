@@ -153,7 +153,7 @@ export default function Services() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   onClick={() => window.location.href = "/checkout?service=new_website"}
-                  className="bg-background text-foreground hover:bg-foreground hover:text-background border-2 border-background px-6 py-3"
+                  className="bg-black text-white hover:bg-white hover:text-black border-2 border-black px-6 py-3"
                 >
                   Buy Now
                 </Button>
@@ -164,7 +164,7 @@ export default function Services() {
                     if (chatButton) chatButton.click();
                   }}
                   variant="outline"
-                  className="border-2 border-background text-background hover:bg-background hover:text-accent px-6 py-3"
+                  className="border-2 border-black text-black hover:bg-black hover:text-white px-6 py-3 bg-transparent"
                 >
                   Ask Our AI Assistant
                 </Button>
