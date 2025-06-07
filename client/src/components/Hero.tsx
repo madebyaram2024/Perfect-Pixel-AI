@@ -38,7 +38,7 @@ export default function Hero() {
           }, 1000);
           
           setTimeout(() => {
-            if (video.playbackRate > 0) video.playbackRate = 0.05;
+            if (video.playbackRate > 0) video.playbackRate = 0.1;
           }, 2000);
           
           setTimeout(() => {

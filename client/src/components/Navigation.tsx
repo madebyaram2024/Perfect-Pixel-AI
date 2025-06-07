@@ -61,7 +61,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <Link href="/">
               <h1 className="text-lg font-mono tracking-wider text-foreground cursor-pointer hover:text-accent transition-colors">
-                PERFECTPIXELAI
+                PERFECT<span className="text-accent">PIXEL</span>AI
               </h1>
             </Link>
           </div>

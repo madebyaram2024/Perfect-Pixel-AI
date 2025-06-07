@@ -13,7 +13,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
           <div className="md:col-span-6">
-            <h3 className="text-lg font-mono tracking-wider text-foreground mb-6">PERFECTPIXELAI</h3>
+            <h3 className="text-lg font-mono tracking-wider text-foreground mb-6">PERFECT<span className="text-accent">PIXEL</span>AI</h3>
             <p className="text-muted-foreground font-light leading-relaxed max-w-md mb-6">
               Professional AI-powered web design for modern businesses. 
               Affordable, fast, and tailored to your needs.
