@@ -88,8 +88,7 @@ export default function Hero() {
             filter: 'brightness(1.2) contrast(1.4)',
           }}
         >
-          <source src="/uploads/hero-background.mp4" type="video/mp4" />
-          <source src="/uploads/hero-background.webm" type="video/webm" />
+          <source src="/hero-background.mp4" type="video/mp4" />
         </video>
       </div>
       
